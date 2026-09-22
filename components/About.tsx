@@ -36,7 +36,7 @@ export function About() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-white/[0.03] p-6 backdrop-blur hover:border-emerald-300/25 hover:bg-emerald-400/[0.04]">
+              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-white/[0.03] p-6 backdrop-blur hover:border-white/[0.14] hover:bg-white/[0.04]">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-zinc-300">
                   <p.icon className="h-4 w-4" aria-hidden="true" />
                 </div>
@@ -49,7 +49,7 @@ export function About() {
 
         <Reveal delay={0.1}>
           <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-              <div className="rounded-2xl border border-slate-400/12 bg-gradient-to-br from-emerald-400/[0.07] via-white/[0.03] to-violet-400/[0.06] p-6 sm:p-8">
+              <div className="rounded-2xl border border-slate-400/12 bg-white/[0.03] p-6 sm:p-8">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500">
                 background
               </p>

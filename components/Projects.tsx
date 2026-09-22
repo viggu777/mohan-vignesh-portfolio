@@ -27,10 +27,6 @@ export function Projects() {
       aria-label="Featured projects"
       className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
     >
-      <div
-        aria-hidden="true"
-        className="absolute left-1/2 top-[-280px] h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.09),transparent_65%)] blur-2xl"
-      />
       <div className="relative mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
@@ -55,7 +51,7 @@ export function Projects() {
                   className={cn(
                     "rounded-md px-3.5 py-2 text-[13px] font-medium transition",
                     active === f
-                      ? "bg-white text-black"
+                      ? "bg-white/[0.09] text-white"
                       : "text-zinc-400 hover:text-white"
                   )}
                 >
@@ -74,10 +70,8 @@ export function Projects() {
           ))}
         </div>
 
-        <p className="mt-6 font-mono text-[11px] leading-5 text-zinc-500">
-          Showing {visible.length} of {projects.length} — filter by AI / Full Stack / Mobile.
-          Add future projects in <span className="text-zinc-400">data/projects.ts</span> without
-          redesigning this section.
+        <p className="mt-6 font-mono text-[11px] leading-5 text-zinc-600">
+          Showing {visible.length} of {projects.length}
         </p>
       </div>
     </section>

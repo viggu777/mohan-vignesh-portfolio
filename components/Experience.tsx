@@ -36,7 +36,7 @@ export function Experience() {
                     className={`h-1.5 w-1.5 rounded-full ${job.current ? "bg-emerald-400" : "bg-zinc-600"}`}
                   />
                 </span>
-                <article className="card-lift rounded-2xl border border-slate-400/12 bg-[#080d18]/90 p-6 backdrop-blur hover:border-emerald-300/20 sm:p-7">
+                <article className="card-lift rounded-2xl border border-slate-400/12 bg-[#080d18]/90 p-6 backdrop-blur hover:border-white/[0.14] sm:p-7">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="flex flex-wrap items-center gap-2 text-[15px] font-semibold tracking-tight text-white">

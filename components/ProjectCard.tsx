@@ -52,7 +52,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-slate-400/10 pt-5">
-          <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-2 text-[13px] font-bold text-[#04110b] transition group-hover:brightness-110">
+          <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-white px-3.5 py-2 text-[13px] font-semibold text-black transition group-hover:bg-slate-200">
             Case study
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
           </span>

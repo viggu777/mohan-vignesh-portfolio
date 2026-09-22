@@ -310,6 +310,77 @@ export const projects: Project[] = [
     replaceImageHint:
       "Illustrative preview — replace with a real screenshot by adding `public/projects/kuchipudi-kala-gurukulam.png` and wiring it into ProjectVisual.",
   },
+  {
+    slug: "cse-placement-crm",
+    name: "CSE Placement CRM",
+    tagline: "Placement management platform used by 30+ CSE students",
+    description:
+      "Role-based placement workflows for student and placement data — Firebase Auth + Firestore with real-time updates, built on React with GitHub Actions CI/CD to Firebase hosting.",
+    longDescription: [
+      "A placement management platform used by 30+ CSE students to manage placement-related activities and information, with role-based access and workflows for student and placement data.",
+      "Built with React.js and Firebase services integrated directly — Firebase Authentication for login and Firestore for storage and real-time application updates, with no separate Node.js/Express backend.",
+      "Configured GitHub Actions CI/CD for automated build and deployment to Firebase.",
+    ],
+    categoryLabel: "Full Stack · Firebase · CI/CD",
+    categories: ["Full Stack"],
+    tech: [
+      "React.js",
+      "Firebase Authentication",
+      "Firebase Firestore",
+      "GitHub Actions",
+      "Firebase Hosting",
+    ],
+    year: "2025",
+    role: "Frontend, Firebase data model, auth & CI/CD",
+    visual: "admin",
+    accent: "cyan",
+    features: [
+      {
+        title: "Placement workflows",
+        description:
+          "Manage placement activities and information with structured flows for students and coordinators.",
+      },
+      {
+        title: "Role-based access",
+        description:
+          "Role-based access and workflows guarding student and placement data by responsibility.",
+      },
+      {
+        title: "Realtime data",
+        description:
+          "Firestore powers storage and real-time application updates without a separate backend server.",
+      },
+      {
+        title: "Automated deploys",
+        description:
+          "GitHub Actions CI/CD automates build and deployment to Firebase on every push.",
+      },
+    ],
+    architecture: [
+      "React.js frontend with Firebase services integrated directly — no separate Node.js/Express backend.",
+      "Firebase Authentication for user login; Firestore for student records, placement data, and real-time sync.",
+      "GitHub Actions pipeline builds the app and deploys to Firebase hosting automatically.",
+    ],
+    engineering: [
+      "Firestore data model shaped around placement workflows for fast reads and realtime listeners.",
+      "Auth-gated routes so each role only reaches its own placement workflows.",
+      "Pipeline-driven delivery so student-facing updates ship through CI/CD, not manual deploys.",
+    ],
+    challenges: [
+      {
+        problem: "Serving 30+ students with live placement information.",
+        approach:
+          "Used Firestore realtime listeners so updates propagate instantly without polling or a custom websocket layer.",
+      },
+      {
+        problem: "No backend team or server to maintain.",
+        approach:
+          "Leaned on Firebase Auth + Firestore security rules for access control, keeping the architecture serverless.",
+      },
+    ],
+    replaceImageHint:
+      "Illustrative preview — replace with a real screenshot by adding `public/projects/cse-placement-crm.png` and wiring it into ProjectVisual.",
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {

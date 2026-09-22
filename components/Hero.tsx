@@ -29,10 +29,7 @@ function HeroVisual() {
   const reduce = useSafeReducedMotion();
   return (
     <div aria-hidden="true" className="relative mx-auto w-full max-w-[560px] select-none">
-      {/* ambient glows */}
-      <div className="absolute -inset-6 rounded-[32px] bg-[radial-gradient(ellipse_65%_55%_at_50%_28%,rgba(52,211,153,0.16),rgba(167,139,250,0.12)_45%,transparent_72%)] blur-2xl" />
-      <div className="absolute -right-8 -top-8 h-48 w-48 rounded-full bg-emerald-400/[0.12] blur-3xl sm:h-56 sm:w-56" />
-      <div className="absolute -left-8 bottom-0 h-48 w-48 rounded-full bg-violet-500/[0.14] blur-3xl" />
+      {/* single soft glow — no competing green/purple orbs */}
 
       <motion.div
         initial={reduce ? false : { opacity: 0, y: 28 }}
@@ -55,44 +52,38 @@ function HeroVisual() {
         </div>
 
         <div className="grid gap-0 sm:grid-cols-[1fr_168px]">
-          <div className="min-w-0 p-4 font-mono text-[11.5px] leading-[1.8] sm:p-5 sm:text-[12px]">
-            <p className="truncate text-slate-500">{"// retrieval → generation"}</p>
-            <p className="overflow-x-auto whitespace-nowrap">
+          <div className="min-w-0 p-4 font-mono text-[12px] leading-[1.8] sm:p-5">
+            <p className="text-slate-500">{"// retrieval → generation"}</p>
+            <p className="break-all">
               <span className="text-emerald-300">const</span>{" "}
               <span className="text-slate-100">chunks</span>{" "}
               <span className="text-slate-500">=</span>{" "}
-              <span className="text-sky-300">await</span>{" "}
-              <span className="text-slate-200">ingest</span>
+              <span className="text-sky-300">await ingest</span>
               <span className="text-slate-500">(</span>
-              <span className="text-amber-200/90">“notes.pdf”</span>
+              <span className="text-amber-200/90">“pdf”</span>
               <span className="text-slate-500">)</span>
             </p>
-            <p className="overflow-x-auto whitespace-nowrap">
+            <p className="break-all">
               <span className="text-emerald-300">const</span>{" "}
               <span className="text-slate-100">hits</span>{" "}
               <span className="text-slate-500">=</span>{" "}
-              <span className="text-sky-300">await</span>{" "}
-              <span className="text-slate-200">vectorSearch</span>
+              <span className="text-sky-300">await search</span>
               <span className="text-slate-500">(</span>
-              <span className="text-slate-200">query</span>
-              <span className="text-slate-500">,</span>{" "}
-              <span className="text-slate-500">{"{ k: 8 }"}</span>
+              <span className="text-slate-200">q</span>
               <span className="text-slate-500">)</span>
             </p>
-            <p className="overflow-x-auto whitespace-nowrap">
-              <span className="text-violet-300">return</span>{" "}
-              <span className="text-slate-200">generate</span>
+            <p className="break-all">
+              <span className="text-slate-300">return</span>{" "}
+              <span className="text-slate-200">answer</span>
               <span className="text-slate-500">(</span>
               <span className="text-slate-200">hits</span>
-              <span className="text-slate-500">,</span>{" "}
-              <span className="text-slate-500">{"{ cited: true }"}</span>
               <span className="text-slate-500">)</span>
             </p>
             <div className="mt-4 space-y-2.5 border-t border-slate-400/10 pt-4">
               {[
-                { label: "chunk · embed", w: "92%", c: "bg-gradient-to-r from-emerald-400 to-teal-300", pct: "1.2k" },
-                { label: "retrieve · top-k 8", w: "76%", c: "bg-gradient-to-r from-sky-400 to-cyan-300", pct: "38ms" },
-                { label: "generate · cited", w: "64%", c: "bg-gradient-to-r from-violet-400 to-fuchsia-300", pct: "0 halluc." },
+                { label: "chunk · embed", w: "92%", c: "bg-emerald-400/80", pct: "1.2k" },
+                { label: "retrieve · top-8", w: "76%", c: "bg-sky-400/80", pct: "38ms" },
+                { label: "generate · cited", w: "64%", c: "bg-slate-300/80", pct: "cited" },
               ].map((row) => (
                 <div key={row.label}>
                   <div className="mb-1 flex items-center justify-between text-[10px] text-slate-400">
@@ -189,13 +180,10 @@ export function Hero() {
 
   return (
     <section id="home" aria-label="Introduction" className="relative overflow-clip">
-      {/* background layers */}
+      {/* background layers — faint grid only, no muddy color bands */}
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="bg-grid mask-fade-radial absolute inset-0 opacity-80" />
-        <div className="absolute left-1/2 top-[-340px] h-[560px] w-[min(920px,120vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.14),rgba(167,139,250,0.1)_45%,transparent_68%)] blur-2xl animate-aurora" />
-        <div className="absolute right-[-140px] top-[28%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.1),transparent_65%)] blur-2xl" />
-        <div className="absolute left-[-140px] top-[55%] h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.1),transparent_65%)] blur-2xl" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent" />
+        <div className="bg-grid mask-fade-radial absolute inset-0 opacity-60" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </div>
 
       <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-5 pb-14 pt-12 sm:gap-14 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:pt-24">
@@ -207,14 +195,14 @@ export function Hero() {
         >
           {profile.availability.enabled && (
             <motion.div variants={item}>
-              <span className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-emerald-300/20 bg-emerald-400/[0.08] py-1.5 pl-3 pr-4 text-[12px] font-medium text-emerald-200 backdrop-blur sm:text-[12.5px]">
+              <span className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-3 pr-4 text-[12px] font-medium text-slate-300 backdrop-blur sm:text-[12.5px]">
                 {profile.availability.dot && (
                   <span className="relative flex h-2 w-2 shrink-0">
                     <span className="absolute h-full w-full animate-pulse-dot rounded-full bg-emerald-400" />
                   </span>
                 )}
                 <span className="truncate">{profile.availability.label}</span>
-                <span className="hidden shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-emerald-300/70 sm:inline-flex">
+                <span className="hidden shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-slate-500 sm:inline-flex">
                   <Sparkles className="h-3 w-3" aria-hidden="true" /> hiring
                 </span>
               </span>
@@ -229,10 +217,10 @@ export function Hero() {
           </motion.p>
           <motion.h1
             variants={item}
-            className="text-balance mt-3 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-white sm:text-6xl lg:text-[68px]"
+            className="text-balance mt-3 text-[40px] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-6xl lg:text-[64px]"
           >
-            Building intelligent products{" "}
-            <span className="text-gradient-hero">with AI &amp; code.</span>
+            Building intelligent products with{" "}
+            <span className="text-gradient-hero">AI &amp; code.</span>
           </motion.h1>
           <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-7 text-slate-400 sm:text-[16px]">
             {profile.summary}{" "}
@@ -241,11 +229,11 @@ export function Hero() {
             </span>
           </motion.p>
 
-          {/* CTAs — full-width on tiny screens, 44px+ targets */}
+          {/* CTAs — restrained white primary, quiet secondary */}
           <motion.div variants={item} className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:items-center">
             <Link
               href="/#projects"
-              className="btn-primary-glow group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-200 px-6 py-3 text-[15px] font-bold text-[#04110b] transition hover:brightness-110 active:scale-[0.99] sm:w-auto"
+              className="group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-[15px] font-semibold text-black transition hover:bg-slate-200 active:scale-[0.99] sm:w-auto"
             >
               Explore projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -255,9 +243,9 @@ export function Hero() {
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-slate-400/20 bg-white/[0.05] px-5 py-3 text-[14px] font-semibold text-slate-100 backdrop-blur transition hover:border-emerald-300/40 hover:bg-emerald-400/10"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-5 py-3 text-[14px] font-medium text-slate-100 backdrop-blur transition hover:border-white/25 hover:bg-white/[0.08]"
               >
-                <FileText className="h-4 w-4 text-emerald-300" aria-hidden="true" />
+                <FileText className="h-4 w-4" aria-hidden="true" />
                 Resume
               </a>
               <Link
@@ -279,7 +267,7 @@ export function Hero() {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-2xl border border-slate-400/12 bg-white/[0.03] px-4 py-3.5 backdrop-blur transition hover:border-emerald-300/25 hover:bg-emerald-400/[0.06]"
+                className="rounded-2xl border border-white/[0.07] bg-white/[0.03] px-4 py-3.5 backdrop-blur"
               >
                 <dt className="order-2 mt-1 text-[11.5px] leading-4 text-slate-400">{s.label}</dt>
                 <dd className="order-1 text-xl font-bold tracking-tight text-white">{s.value}</dd>
@@ -317,24 +305,32 @@ export function Hero() {
         <HeroVisual />
       </div>
 
-      {/* tech strip — marquee on mobile, static row on desktop */}
-      <div className="relative border-t border-slate-400/10 bg-black/20">
-        <div className="marquee-mask overflow-hidden">
-          <div className="flex w-max animate-marquee items-center gap-8 px-5 py-4 sm:mx-auto sm:w-full sm:max-w-6xl sm:animate-none sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:px-8">
-            <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-300/80">
-              working with
-            </span>
+      {/* tech strip — single clean row on desktop, marquee only on mobile */}
+      <div className="relative border-t border-white/[0.06] bg-black/20">
+        {/* mobile marquee */}
+        <div className="marquee-mask overflow-hidden sm:hidden">
+          <div className="flex w-max animate-marquee items-center gap-8 px-5 py-4">
             {[...techStrip, ...techStrip].map((t, i) => (
               <span
                 key={`${t}-${i}`}
                 aria-hidden={i >= techStrip.length}
-                className="shrink-0 font-mono text-[12px] text-slate-300 sm:text-slate-400"
+                className="shrink-0 font-mono text-[12px] text-slate-400"
               >
-                <span className="mr-8 inline-block h-1 w-1 rounded-full bg-emerald-400/60 align-middle sm:mr-0 sm:hidden" />
                 {t}
               </span>
             ))}
           </div>
+        </div>
+        {/* desktop static row */}
+        <div className="mx-auto hidden max-w-6xl flex-wrap items-center gap-x-7 gap-y-2 px-8 py-4 sm:flex">
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-slate-500">
+            working with
+          </span>
+          {techStrip.map((t) => (
+            <span key={t} className="font-mono text-[12px] text-slate-400">
+              {t}
+            </span>
+          ))}
         </div>
       </div>
     </section>

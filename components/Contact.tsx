@@ -37,7 +37,7 @@ export function Contact() {
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href={profile.socials.email}
-                className="btn-primary-glow inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-200 px-5 py-3 text-sm font-bold text-[#04110b] transition hover:brightness-110"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-slate-200"
               >
                 <Mail className="h-4 w-4" aria-hidden="true" />
                 Email Me
@@ -46,7 +46,7 @@ export function Contact() {
                 type="button"
                 onClick={copyEmail}
                 aria-live="polite"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-slate-400/20 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-emerald-300/30 hover:bg-emerald-400/10"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-medium text-slate-100 transition hover:border-white/25 hover:bg-white/[0.08]"
               >
                 {copied ? (
                   <Check className="h-4 w-4 text-emerald-300" aria-hidden="true" />

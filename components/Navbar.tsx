@@ -102,7 +102,7 @@ export function Navbar() {
                   className={cn(
                     "rounded-md px-3 py-2 text-[13.5px] transition-colors",
                     isActive
-                      ? "bg-emerald-400/10 text-emerald-200"
+                      ? "bg-white/[0.08] text-white"
                       : "text-slate-400 hover:bg-white/[0.05] hover:text-slate-100"
                   )}
                 >
@@ -126,7 +126,7 @@ export function Navbar() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-2 text-[13px] font-bold text-[#04110b] transition hover:brightness-110"
+            className="inline-flex items-center gap-2 rounded-lg bg-white px-3.5 py-2 text-[13px] font-semibold text-black transition hover:bg-slate-200"
           >
             <FileText className="h-3.5 w-3.5" aria-hidden="true" />
             Resume
@@ -135,7 +135,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-400/15 bg-white/[0.04] text-slate-200 backdrop-blur transition hover:border-emerald-300/30 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 backdrop-blur transition hover:border-white/25 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -148,7 +148,7 @@ export function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-slate-400/10 bg-[#05080f]/95 backdrop-blur-xl md:hidden"
+          className="border-t border-white/[0.07] bg-[#05080f]/95 backdrop-blur-xl md:hidden"
         >
           <ul className="space-y-1 px-5 py-4 pb-6">
             {navItems.map((item) => (
@@ -156,7 +156,7 @@ export function Navbar() {
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block min-h-[48px] rounded-xl px-4 py-3 text-[16px] font-medium text-slate-200 transition hover:bg-emerald-400/10 hover:text-emerald-200"
+                  className="block min-h-[48px] rounded-xl px-4 py-3 text-[16px] font-medium text-slate-200 transition hover:bg-white/[0.06] hover:text-white"
                 >
                   {item.label}
                 </Link>
@@ -169,7 +169,7 @@ export function Navbar() {
                   setOpen(false);
                   openCommandMenu();
                 }}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-slate-400/15 bg-white/[0.04] px-3.5 py-3 text-[14px] font-semibold text-slate-200"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-[14px] font-semibold text-slate-200"
               >
                 <Command className="h-4 w-4" aria-hidden="true" />
                 Jump
@@ -178,7 +178,7 @@ export function Navbar() {
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-3 text-[14px] font-bold text-[#04110b]"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white px-3.5 py-3 text-[14px] font-semibold text-black"
               >
                 <FileText className="h-4 w-4" aria-hidden="true" />
                 Resume
