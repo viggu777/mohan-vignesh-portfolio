@@ -4,7 +4,7 @@ export const achievements: Achievement[] = [
   {
     title: "500+ DSA problems on LeetCode",
     description:
-      "Consistent problem-solving across data structures and algorithms — the foundation behind my backend and AI engineering work.",
+      "Consistent problem-solving across data structures and algorithms — the foundation behind my backend and full-stack work.",
     href: "https://leetcode.com/u/viggu777",
     linkLabel: "View LeetCode profile",
     icon: "code",

@@ -9,34 +9,39 @@ export function Experience() {
     <section
       id="experience"
       aria-label="Professional experience"
-      className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
+      <div
+        aria-hidden="true"
+        className="absolute -right-40 top-[-80px] h-[280px] w-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.07),transparent_65%)] blur-2xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
         <Reveal>
           <SectionHeading
             eyebrow="Experience"
+            accent="emerald"
             title="Where I've worked."
-            description="Three roles spanning campus web development, full-stack MERN work, and Generative AI product engineering."
+            description="Three roles spanning campus web development, full-stack MERN work, and practical GenAI features."
           />
         </Reveal>
 
-        <ol className="relative mt-8 space-y-4">
+        <ol className="relative mt-6 space-y-3">
           <span
             aria-hidden="true"
-            className="absolute bottom-6 left-[19px] top-2 w-px bg-gradient-to-b from-emerald-300/50 via-slate-400/20 to-transparent"
+            className="absolute bottom-6 left-[17px] top-2 w-px bg-gradient-to-b from-emerald-300/50 via-slate-400/20 to-transparent sm:left-[19px]"
           />
           {experience.map((job, i) => (
             <Reveal key={job.company} delay={i * 0.06}>
-              <li className="relative pl-12">
+              <li className="relative pl-10 sm:pl-12">
                 <span
                   aria-hidden="true"
-                  className="absolute left-[11px] top-6 flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/15 bg-[#0b0b12]"
+                  className="absolute left-[9px] top-6 flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/15 bg-[#0b0b12] sm:left-[11px]"
                 >
                   <span
                     className={`h-1.5 w-1.5 rounded-full ${job.current ? "bg-emerald-400" : "bg-zinc-600"}`}
                   />
                 </span>
-                <article className="card-lift rounded-2xl border border-slate-400/12 bg-[#080d18]/90 p-6 backdrop-blur hover:border-white/[0.14] sm:p-7">
+                <article className="card-lift rounded-2xl border border-slate-400/12 bg-[#080d18]/90 p-5 backdrop-blur hover:border-white/[0.14] sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="flex flex-wrap items-center gap-2 text-[15px] font-semibold tracking-tight text-white">

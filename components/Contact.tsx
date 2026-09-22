@@ -24,17 +24,32 @@ export function Contact() {
     <section
       id="contact"
       aria-label="Contact"
-      className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div
+        aria-hidden="true"
+        className="absolute -right-40 top-[-80px] h-[300px] w-[440px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.08),transparent_65%)] blur-2xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <Reveal>
             <SectionHeading
               eyebrow="Contact"
-              title="Let's build something that ships."
-              description="Fastest way to reach me is email. I read everything — whether it's an internship, a collaboration, or feedback on the exam platform and RAG work."
+              accent="cyan"
+              title="Looking for a Software Developer Intern?"
+              description="I'm actively looking for Software Developer Internships — full-stack, backend, or mobile roles. Fastest way to reach me is email. I read everything, whether it's an internship, a collaboration, or feedback on the exam platform and full-stack work."
             />
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-1.5" aria-label="Roles I'm open to">
+              {["SDE Intern", "Full-Stack Intern", "MERN / Next.js", "Remote / On-site"].map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border border-cyan-300/20 bg-cyan-300/[0.07] px-3 py-1 font-mono text-[11px] text-cyan-200"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap">
               <a
                 href={profile.socials.email}
                 className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-slate-200"
@@ -70,7 +85,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 px-5 py-4 transition hover:bg-white/[0.03]"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-300">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-sky-400/20 bg-sky-400/10 text-sky-300">
                     <LinkedinIcon className="h-4 w-4" />
                   </span>
                   <span className="flex-1">
@@ -110,7 +125,7 @@ export function Contact() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-4 px-5 py-4 transition hover:bg-white/[0.03]"
                 >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-300">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-amber-300/20 bg-amber-300/10 text-amber-300">
                     <Code2 className="h-4 w-4" aria-hidden="true" />
                   </span>
                   <span className="flex-1">
@@ -124,8 +139,8 @@ export function Contact() {
                 </a>
               </li>
             </ul>
-            <p className="mt-4 rounded-xl border border-white/[0.07] bg-white/[0.02] px-4 py-3 text-[13px] leading-6 text-zinc-500">
-              Based in {profile.location} · {profile.education.school} · Graduating Apr 2027.
+            <p className="mt-4 rounded-xl border border-cyan-300/15 bg-cyan-300/[0.04] px-4 py-3 text-[13px] leading-6 text-zinc-400">
+              Open to Software Developer Internships · Based in {profile.location} · {profile.education.school} · Graduating Apr 2027.
             </p>
           </Reveal>
         </div>

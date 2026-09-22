@@ -92,6 +92,21 @@ body {
   overflow-x: hidden;
 }
 
+/* Mobile hardening: never allow horizontal scroll from decorative layers */
+main,
+section,
+article,
+header,
+footer {
+  min-width: 0;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
 ::selection {
   background: rgba(52, 211, 153, 0.28);
   color: #ecfdf5;
@@ -157,7 +172,7 @@ body {
 }
 
 .text-gradient-hero {
-  background: linear-gradient(92deg, #e2e8f0 0%, #94a3b8 100%);
+  background: linear-gradient(92deg, #6ee7b7 0%, #7dd3fc 48%, #c4b5fd 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

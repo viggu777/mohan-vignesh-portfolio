@@ -19,7 +19,7 @@ export function ProjectDetails({ project }: { project: Project }) {
           <div className="absolute left-1/2 top-[-240px] h-[420px] w-[760px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.16),transparent_65%)] blur-2xl" />
           <div className="bg-grid mask-fade-radial absolute inset-0 opacity-60" />
         </div>
-        <div className="relative mx-auto max-w-4xl px-5 pb-10 pt-20 sm:px-8 sm:pt-24">
+        <div className="relative mx-auto max-w-4xl px-4 pb-8 pt-16 sm:px-8 sm:pb-10 sm:pt-24">
           <Link
             href="/#projects"
             className="inline-flex items-center gap-1.5 text-[13px] text-zinc-400 transition hover:text-white"
@@ -30,7 +30,7 @@ export function ProjectDetails({ project }: { project: Project }) {
           <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.22em] text-violet-300/90">
             {"// "}{project.categoryLabel}
           </p>
-          <h1 className="text-balance mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          <h1 className="text-balance mt-3 text-[30px] font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl">
             {project.name}
           </h1>
           <p className="mt-3 text-[16px] font-medium text-zinc-300">{project.tagline}</p>
@@ -65,19 +65,19 @@ export function ProjectDetails({ project }: { project: Project }) {
         </div>
       </header>
 
-      <div className="mx-auto max-w-4xl px-5 py-10 sm:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-8 sm:py-10">
         <div className="overflow-hidden rounded-2xl border border-white/[0.08]">
           <ProjectVisual project={project} />
         </div>
         <p className="mt-3 font-mono text-[11px] text-zinc-600">{project.replaceImageHint}</p>
 
-        <div className="mt-6 flex flex-wrap gap-1.5" aria-label="Technology stack">
+        <div className="mt-5 flex flex-wrap gap-1.5" aria-label="Technology stack">
           {project.tech.map((t) => (
             <Badge key={t}>{t}</Badge>
           ))}
         </div>
 
-        <div className="mt-8 space-y-4 text-[15px] leading-7 text-zinc-300">
+        <div className="mt-6 space-y-3 text-[15px] leading-7 text-zinc-300 sm:mt-7">
           {project.longDescription.map((para, i) => (
             <p key={i} className={i > 0 ? "text-zinc-400" : undefined}>
               {para}
@@ -86,17 +86,17 @@ export function ProjectDetails({ project }: { project: Project }) {
         </div>
 
         {project.note && (
-          <aside className="mt-8 flex gap-3 rounded-xl border border-amber-300/20 bg-amber-300/[0.06] p-4 text-[13.5px] leading-6 text-amber-100/90">
+          <aside className="mt-6 flex gap-3 rounded-xl border border-amber-300/20 bg-amber-300/[0.06] p-4 text-[13.5px] leading-6 text-amber-100/90">
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" aria-hidden="true" />
             <p>{project.note}</p>
           </aside>
         )}
 
-        <section aria-label="Key features" className="mt-12">
+        <section aria-label="Key features" className="mt-8 sm:mt-10">
           <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
             {"// "}features
           </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="mt-3 grid gap-2.5 sm:mt-4 sm:grid-cols-2 sm:gap-3">
             {project.features.map((f) => (
               <div key={f.title} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-5">
                 <h3 className="text-[14.5px] font-semibold text-white">{f.title}</h3>
@@ -106,11 +106,11 @@ export function ProjectDetails({ project }: { project: Project }) {
           </div>
         </section>
 
-        <section aria-label="Architecture" className="mt-12">
+        <section aria-label="Architecture" className="mt-8 sm:mt-10">
           <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
             {"// "}architecture
           </h2>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-3 space-y-2 sm:mt-4 sm:space-y-2.5">
             {project.architecture.map((a) => (
               <li key={a} className="flex gap-2.5 rounded-xl border border-white/[0.06] bg-[#0b0b12] px-5 py-4 text-[14px] leading-6 text-zinc-300">
                 <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-cyan-300/70" />
@@ -120,11 +120,11 @@ export function ProjectDetails({ project }: { project: Project }) {
           </ul>
         </section>
 
-        <section aria-label="Implementation details" className="mt-12">
+        <section aria-label="Implementation details" className="mt-8 sm:mt-10">
           <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
             {"// "}implementation
           </h2>
-          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+          <ul className="mt-3 grid gap-2 sm:mt-4 sm:grid-cols-2 sm:gap-2.5">
             {project.engineering.map((e) => (
               <li key={e} className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 text-[13.5px] leading-6 text-zinc-400">
                 {e}
@@ -133,11 +133,11 @@ export function ProjectDetails({ project }: { project: Project }) {
           </ul>
         </section>
 
-        <section aria-label="Challenges and trade-offs" className="mt-12">
+        <section aria-label="Challenges and trade-offs" className="mt-8 sm:mt-10">
           <h2 className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-zinc-500">
             {"// "}challenges
           </h2>
-          <div className="mt-4 space-y-3">
+          <div className="mt-3 space-y-2.5 sm:mt-4 sm:space-y-3">
             {project.challenges.map((c) => (
               <div key={c.problem} className="overflow-hidden rounded-xl border border-white/[0.07]">
                 <p className="border-b border-white/[0.06] bg-white/[0.03] px-5 py-3.5 text-[14px] font-medium text-white">
@@ -155,7 +155,7 @@ export function ProjectDetails({ project }: { project: Project }) {
         </section>
 
         {/* prev / next */}
-        <nav aria-label="More projects" className="mt-14 grid gap-3 sm:grid-cols-2">
+        <nav aria-label="More projects" className="mt-10 grid gap-2.5 sm:grid-cols-2 sm:gap-3">
           <Link
             href={`/projects/${prev.slug}`}
             className="group rounded-xl border border-white/[0.08] bg-white/[0.02] p-5 transition hover:border-white/[0.16]"

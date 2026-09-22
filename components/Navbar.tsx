@@ -74,7 +74,7 @@ export function Navbar() {
     >
       <nav
         aria-label="Primary"
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-8"
       >
         <Link
           href="/#home"
@@ -84,7 +84,7 @@ export function Navbar() {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-300/25 bg-gradient-to-br from-emerald-400/25 to-violet-500/20 font-mono text-[13px] font-bold tracking-tight text-white shadow-[0_0_20px_-6px_rgba(52,211,153,0.5)]">
             {profile.monogram}
           </span>
-          <span className="hidden text-[13px] font-medium tracking-tight text-slate-200 xs:block sm:block">
+          <span className="hidden max-w-[140px] truncate text-[13px] font-medium tracking-tight text-slate-200 sm:block">
             mohanvignesh
             <span className="text-slate-500">.dev</span>
           </span>

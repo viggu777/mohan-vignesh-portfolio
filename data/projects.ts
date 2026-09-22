@@ -12,8 +12,8 @@ export const projects: Project[] = [
       "The proctoring layer combines webcam face detection, gaze tracking, fullscreen and tab monitoring, suspicious-action detection, and a Trust Score that aggregates violations for review.",
       "I also integrated Llama 3.1 8B Instant through the Groq API for semantic answer evaluation with partial marking and a manual-review fallback. That AI evaluation path was later removed from production due to API and deployment constraints — the rule-based grading, rankings, and percentile analytics remain live.",
     ],
-    categoryLabel: "Full Stack · AI Evaluation · Proctoring",
-    categories: ["AI", "Full Stack"],
+    categoryLabel: "Full Stack · Proctoring · MERN",
+    categories: ["Full Stack", "AI", "AI Integration"],
     tech: [
       "React",
       "Node.js",
@@ -91,16 +91,16 @@ export const projects: Project[] = [
   {
     slug: "studymate",
     name: "StudyMate",
-    tagline: "Student productivity app with a RAG study assistant",
+    tagline: "Student productivity & learning app",
     description:
-      "Cross-platform React Native app with Pomodoro, timetable, SGPA and study workflows — plus a RAG assistant that answers questions over the student's own PDFs.",
+      "Cross-platform React Native app with Pomodoro, timetable, SGPA and study workflows — with a practical RAG assistant for questions over the student's own PDFs.",
     longDescription: [
       "A cross-platform student productivity and learning app built with React Native (Expo), Firebase Authentication, Node.js, Express.js, and MongoDB Atlas.",
       "Beyond Pomodoro, timetable, SGPA, and study workflows, the core AI feature is a RAG-based study assistant for PDF question answering: document ingestion, text extraction, chunking, embeddings, MongoDB Atlas Vector Search, semantic retrieval, and Hugging Face LLM generation.",
       "Retrieval is user-isolated, so each student's questions are answered only from their own documents.",
     ],
-    categoryLabel: "Mobile · RAG · Vector Search",
-    categories: ["AI", "Mobile", "Full Stack"],
+    categoryLabel: "Mobile · Full Stack · AI Integration",
+    categories: ["Mobile", "Full Stack", "AI", "AI Integration"],
     tech: [
       "React Native",
       "Expo",
@@ -332,7 +332,7 @@ export const projects: Project[] = [
     ],
     year: "2025",
     role: "Frontend, Firebase data model, auth & CI/CD",
-    visual: "admin",
+    visual: "crm",
     accent: "cyan",
     features: [
       {

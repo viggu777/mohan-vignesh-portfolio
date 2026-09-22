@@ -6,6 +6,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
+const categoryDots = [
+  "bg-violet-400",
+  "bg-sky-400",
+  "bg-emerald-400",
+  "bg-cyan-300",
+  "bg-amber-300",
+  "bg-rose-400",
+  "bg-teal-300",
+];
+
 export function Skills() {
   const [active, setActive] = useState("all");
 
@@ -21,13 +31,18 @@ export function Skills() {
     <section
       id="skills"
       aria-label="Technical skills"
-      className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
-        <div className="flex flex-wrap items-end justify-between gap-6">
+      <div
+        aria-hidden="true"
+        className="absolute -right-40 top-[-80px] h-[280px] w-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.06),transparent_65%)] blur-2xl"
+      />
+      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <Reveal>
             <SectionHeading
               eyebrow="Skills"
+              accent="amber"
               title="A practical, production-oriented toolkit."
               description="No proficiency bars or fake ratings — just the tools I actually build and deploy with, grouped by where they run."
             />
@@ -36,7 +51,7 @@ export function Skills() {
 
         <Reveal delay={0.05}>
           <div
-            className="mt-6 flex flex-wrap gap-1.5"
+            className="mt-5 flex flex-wrap gap-1.5"
             role="group"
             aria-label="Filter skill categories"
           >
@@ -55,11 +70,17 @@ export function Skills() {
           </div>
         </Reveal>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {visible.map((cat, i) => (
-            <Reveal key={cat.id} delay={(i % 3) * 0.06}>
-              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-[#080d18] p-6 hover:border-white/[0.14]">
-                <h3 className="text-[15px] font-semibold tracking-tight text-white">{cat.label}</h3>
+            <Reveal key={cat.id} delay={(i % 3) * 0.06} className="h-full">
+              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-[#080d18] p-5 hover:border-white/[0.14] sm:p-6">
+                <div className="flex items-center gap-2">
+                  <span
+                    aria-hidden="true"
+                    className={`h-2 w-2 shrink-0 rounded-full ${categoryDots[i % categoryDots.length]}`}
+                  />
+                  <h3 className="text-[15px] font-semibold tracking-tight text-white">{cat.label}</h3>
+                </div>
                 <p className="mt-0.5 font-mono text-[11px] text-zinc-500">{cat.description}</p>
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${cat.label} skills`}>
                   {cat.skills.map((s) => (

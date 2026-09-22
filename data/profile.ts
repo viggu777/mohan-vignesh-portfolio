@@ -4,10 +4,10 @@ export const profile: Profile = {
   name: "Kola Mohan Vignesh Kumar",
   firstName: "Mohan Vignesh",
   monogram: "MV",
-  role: "Full Stack AI Engineer | Generative AI Developer",
-  headline: "Building Intelligent Products with AI & Code.",
+  role: "Full Stack Developer | MERN · Next.js · React Native",
+  headline: "Building Real-World Web & Mobile Apps with MERN & Next.js.",
   summary:
-    "Full Stack AI Engineer working across Generative AI, RAG, and production MERN applications — from embeddings and retrieval pipelines to deployed frontends, APIs, and databases.",
+    "CSE undergraduate building real-world web and mobile apps with MERN, Next.js, and React Native — from auth, role-based access, REST APIs and databases to payments, deployment, with practical Generative AI features.",
   location: "Visakhapatnam, India",
   education: {
     degree: "B.Tech in Computer Science and Engineering",
@@ -19,9 +19,8 @@ export const profile: Profile = {
   availability: {
     enabled: true,
     dot: true,
-    // Configurable status pill. Keep factual — currently interning.
-    // Change this string anytime, e.g. "Open to Summer 2027 internships".
-    label: "Gen AI Intern @ Sariki Technologies",
+    // Configurable status pill. Keep factual — currently interning + open to roles.
+    label: "Open to Software Developer Internships",
   },
   // Resume via Google Drive (recommended — see `public/resume.README.md`).
   // 1. Upload the PDF to Drive → Share → "Anyone with the link" (Viewer).

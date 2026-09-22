@@ -9,7 +9,7 @@ export interface SocialLink {
   username?: string;
 }
 
-export type ProjectCategory = "AI" | "Full Stack" | "Mobile";
+export type ProjectCategory = "AI" | "Full Stack" | "Mobile" | "AI Integration";
 
 export interface ProjectFeature {
   title: string;
@@ -30,7 +30,7 @@ export interface Project {
   /** Omit when unknown — the card/detail page hides it instead of guessing. */
   year?: string;
   role: string;
-  visual: "proctoring" | "rag" | "admin" | "academy";
+  visual: "proctoring" | "rag" | "admin" | "academy" | "crm";
   accent: "violet" | "cyan" | "amber" | "rose";
   features: ProjectFeature[];
   architecture: string[];
