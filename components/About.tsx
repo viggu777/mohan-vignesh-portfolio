@@ -24,7 +24,7 @@ const pillars = [
 export function About() {
   return (
     <section id="about" aria-label="About me" className="relative scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
         <Reveal>
           <SectionHeading
             eyebrow="About"
@@ -33,7 +33,7 @@ export function About() {
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-white/[0.03] p-6 backdrop-blur hover:border-white/[0.14] hover:bg-white/[0.04]">

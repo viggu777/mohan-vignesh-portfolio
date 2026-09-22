@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, FileText, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, MapPin } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { profile } from "@/data/profile";
 import { useSafeReducedMotion } from "@/lib/use-safe-reduced-motion";
@@ -186,7 +186,7 @@ export function Hero() {
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-5 pb-14 pt-12 sm:gap-14 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:pt-24">
+      <div className="relative mx-auto grid w-full max-w-6xl gap-8 px-5 pb-10 pt-10 sm:gap-10 sm:px-8 sm:pb-14 sm:pt-14 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:pt-16">
         <motion.div
           variants={container}
           initial={initialState}
@@ -202,9 +202,6 @@ export function Hero() {
                   </span>
                 )}
                 <span className="truncate">{profile.availability.label}</span>
-                <span className="hidden shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-slate-500 sm:inline-flex">
-                  <Sparkles className="h-3 w-3" aria-hidden="true" /> hiring
-                </span>
               </span>
             </motion.div>
           )}

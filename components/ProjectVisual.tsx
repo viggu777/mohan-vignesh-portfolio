@@ -11,7 +11,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   if (project.visual === "proctoring") {
     return (
       <div className="relative h-full min-h-[280px] overflow-hidden bg-[#08080f]" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(139,92,246,0.25),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(148,163,184,0.08),transparent_70%)]" />
         <div className="absolute inset-0 bg-grid opacity-60" />
         <div className="relative grid h-full grid-cols-[1fr_150px] gap-3 p-5">
           {/* exam dashboard mock */}
@@ -65,7 +65,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   if (project.visual === "rag") {
     return (
       <div className="relative h-full min-h-[280px] overflow-hidden bg-[#060a0e]" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_25%,rgba(34,211,238,0.18),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_25%,rgba(148,163,184,0.08),transparent_70%)]" />
         <div className="relative grid h-full grid-cols-[130px_1fr] gap-3 p-5">
           {/* phone frame */}
           <div className="rounded-[20px] border border-white/12 bg-black/70 p-2">
@@ -114,7 +114,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   if (project.visual === "academy") {
     return (
       <div className="relative h-full min-h-[280px] overflow-hidden bg-[#0c0709]" aria-hidden="true">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_20%,rgba(251,113,133,0.16),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_20%,rgba(148,163,184,0.08),transparent_70%)]" />
         <div className="relative grid h-full grid-cols-[1fr_140px] gap-3 p-5">
           {/* academy portal mock */}
           <div className="rounded-xl border border-white/10 bg-[#100b0e]/95 p-4">
@@ -187,7 +187,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   // admin
   return (
     <div className="relative h-full min-h-[280px] overflow-hidden bg-[#0a0805]" aria-hidden="true">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(251,191,36,0.14),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(148,163,184,0.08),transparent_70%)]" />
       <div className="relative p-5">
         <div className="rounded-xl border border-white/10 bg-[#0d0c09]/95 p-4">
           <div className="flex items-center justify-between">

@@ -11,7 +11,7 @@ export function Experience() {
       aria-label="Professional experience"
       className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
         <Reveal>
           <SectionHeading
             eyebrow="Experience"
@@ -20,7 +20,7 @@ export function Experience() {
           />
         </Reveal>
 
-        <ol className="relative mt-12 space-y-5">
+        <ol className="relative mt-8 space-y-4">
           <span
             aria-hidden="true"
             className="absolute bottom-6 left-[19px] top-2 w-px bg-gradient-to-b from-emerald-300/50 via-slate-400/20 to-transparent"

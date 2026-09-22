@@ -26,8 +26,8 @@ export function Contact() {
       aria-label="Contact"
       className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <Reveal>
             <SectionHeading
               eyebrow="Contact"

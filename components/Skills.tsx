@@ -23,7 +23,7 @@ export function Skills() {
       aria-label="Technical skills"
       className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <SectionHeading
@@ -36,7 +36,7 @@ export function Skills() {
 
         <Reveal delay={0.05}>
           <div
-            className="mt-8 flex flex-wrap gap-1.5"
+            className="mt-6 flex flex-wrap gap-1.5"
             role="group"
             aria-label="Filter skill categories"
           >
@@ -55,7 +55,7 @@ export function Skills() {
           </div>
         </Reveal>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((cat, i) => (
             <Reveal key={cat.id} delay={(i % 3) * 0.06}>
               <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-[#080d18] p-6 hover:border-white/[0.14]">

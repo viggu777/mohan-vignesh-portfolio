@@ -12,7 +12,7 @@ const icons = {
 export function Achievements() {
   return (
     <section aria-label="Achievements" className="relative border-t border-white/[0.06]">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+      <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
         <Reveal>
           <SectionHeading
             eyebrow="Achievements"

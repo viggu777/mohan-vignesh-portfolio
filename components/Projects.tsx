@@ -27,7 +27,7 @@ export function Projects() {
       aria-label="Featured projects"
       className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
     >
-      <div className="relative mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
+      <div className="relative mx-auto max-w-6xl px-5 py-10 sm:px-8 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <SectionHeading
@@ -62,7 +62,7 @@ export function Projects() {
           </Reveal>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
+        <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
           {visible.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 3) * 0.07} className="h-full">
               <ProjectCard project={p} />
@@ -70,7 +70,7 @@ export function Projects() {
           ))}
         </div>
 
-        <p className="mt-6 font-mono text-[11px] leading-5 text-zinc-600">
+        <p className="mt-4 font-mono text-[11px] leading-5 text-zinc-600">
           Showing {visible.length} of {projects.length}
         </p>
       </div>
