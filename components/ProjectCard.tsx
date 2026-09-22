@@ -6,16 +6,16 @@ import { ProjectVisual } from "@/components/ProjectVisual";
 import { Badge } from "@/components/ui/Badge";
 
 const accentBorder: Record<Project["accent"], string> = {
-  violet: "hover:border-violet-400/30",
-  cyan: "hover:border-cyan-300/30",
-  amber: "hover:border-amber-300/30",
-  rose: "hover:border-rose-300/30",
+  violet: "hover:border-violet-300/35",
+  cyan: "hover:border-cyan-300/35",
+  amber: "hover:border-amber-300/35",
+  rose: "hover:border-rose-300/35",
 };
 
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0b0b12] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] focus-within:border-violet-400/40 ${accentBorder[project.accent]}`}
+      className={`group card-lift relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-400/12 bg-[#080d18] focus-within:border-emerald-300/40 ${accentBorder[project.accent]}`}
     >
       <ProjectVisual project={project} />
 
@@ -28,7 +28,7 @@ export function ProjectCard({ project }: { project: Project }) {
             <span className="font-mono text-[11px] text-zinc-500">{project.year}</span>
           )}
         </div>
-        <h3 className="mt-2 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-violet-200">
+        <h3 className="mt-2 text-xl font-semibold tracking-tight text-white transition-colors group-hover:text-emerald-200">
           <Link
             href={`/projects/${project.slug}`}
             aria-label={`${project.name} — view case study`}
@@ -51,8 +51,8 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-white/[0.06] pt-5">
-          <span className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-2 text-[13px] font-semibold text-black transition group-hover:bg-zinc-200">
+        <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-slate-400/10 pt-5">
+          <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-2 text-[13px] font-bold text-[#04110b] transition group-hover:brightness-110">
             Case study
             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
           </span>

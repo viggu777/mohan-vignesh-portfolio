@@ -2,90 +2,104 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUpRight, FileText, MapPin, Sparkles } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons";
 import { profile } from "@/data/profile";
 import { useSafeReducedMotion } from "@/lib/use-safe-reduced-motion";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const stats = [
+  { value: "8.9", label: "CGPA · CSE '27" },
+  { value: "500+", label: "LeetCode solved" },
+  { value: "04", label: "Systems shipped" },
+  { value: "RAG", label: "GenAI · MERN" },
+];
+
+const techStrip = [
+  "Llama 3.1 · Groq",
+  "RAG · Vector Search",
+  "React · Next.js",
+  "Node · Express · MongoDB",
+  "Docker · CI/CD",
+  "Hugging Face · LangChain",
+];
+
 function HeroVisual() {
-  // Hydration-safe: matches the SSR output on first paint.
   const reduce = useSafeReducedMotion();
   return (
-    <div
-      aria-hidden="true"
-      className="relative mx-auto w-full max-w-[520px] select-none"
-    >
-      {/* ambient glow */}
-      <div className="absolute -inset-8 rounded-[28px] bg-[radial-gradient(ellipse_60%_55%_at_50%_30%,rgba(139,92,246,0.22),transparent_70%)]" />
-      <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-cyan-400/[0.07] blur-3xl" />
+    <div aria-hidden="true" className="relative mx-auto w-full max-w-[560px] select-none">
+      {/* ambient glows */}
+      <div className="absolute -inset-6 rounded-[32px] bg-[radial-gradient(ellipse_65%_55%_at_50%_28%,rgba(52,211,153,0.16),rgba(167,139,250,0.12)_45%,transparent_72%)] blur-2xl" />
+      <div className="absolute -right-8 -top-8 h-48 w-48 rounded-full bg-emerald-400/[0.12] blur-3xl sm:h-56 sm:w-56" />
+      <div className="absolute -left-8 bottom-0 h-48 w-48 rounded-full bg-violet-500/[0.14] blur-3xl" />
 
       <motion.div
-        initial={reduce ? false : { opacity: 0, y: 24 }}
+        initial={reduce ? false : { opacity: 0, y: 28 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.25, ease }}
-        className="code-glow relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a12]/95 backdrop-blur"
+        className="code-glow glass noise relative overflow-hidden rounded-2xl border border-slate-400/15 sm:rounded-3xl"
       >
         {/* window chrome */}
-        <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]/80" />
-          <span className="ml-3 font-mono text-[11px] text-zinc-500">
-            rag-pipeline.ts — illustrative
+        <div className="flex items-center gap-1.5 border-b border-slate-400/10 bg-white/[0.02] px-3.5 py-3 sm:px-4">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+          <span className="ml-2 truncate font-mono text-[11px] text-slate-400">
+            rag-pipeline.ts — live
           </span>
-          <span className="ml-auto hidden items-center gap-1.5 font-mono text-[10px] text-emerald-300/80 sm:flex">
+          <span className="ml-auto hidden shrink-0 items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 font-mono text-[10px] font-medium text-emerald-300 sm:flex">
             <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" />
-            vector index · live
+            grounded · 38ms
           </span>
         </div>
 
-        <div className="grid gap-0 sm:grid-cols-[1fr_170px]">
-          <div className="p-5 font-mono text-[12px] leading-[1.75]">
-            <p className="text-zinc-600">{"// retrieval → generation"}</p>
-            <p>
-              <span className="text-violet-300">const</span>{" "}
-              <span className="text-zinc-100">chunks</span>{" "}
-              <span className="text-zinc-500">=</span>{" "}
-              <span className="text-cyan-300">await</span>{" "}
-              <span className="text-zinc-200">ingest</span>
-              <span className="text-zinc-500">(</span>
+        <div className="grid gap-0 sm:grid-cols-[1fr_168px]">
+          <div className="min-w-0 p-4 font-mono text-[11.5px] leading-[1.8] sm:p-5 sm:text-[12px]">
+            <p className="truncate text-slate-500">{"// retrieval → generation"}</p>
+            <p className="overflow-x-auto whitespace-nowrap">
+              <span className="text-emerald-300">const</span>{" "}
+              <span className="text-slate-100">chunks</span>{" "}
+              <span className="text-slate-500">=</span>{" "}
+              <span className="text-sky-300">await</span>{" "}
+              <span className="text-slate-200">ingest</span>
+              <span className="text-slate-500">(</span>
               <span className="text-amber-200/90">“notes.pdf”</span>
-              <span className="text-zinc-500">)</span>
+              <span className="text-slate-500">)</span>
             </p>
-            <p>
-              <span className="text-violet-300">const</span>{" "}
-              <span className="text-zinc-100">hits</span>{" "}
-              <span className="text-zinc-500">=</span>{" "}
-              <span className="text-cyan-300">await</span>{" "}
-              <span className="text-zinc-200">vectorSearch</span>
-              <span className="text-zinc-500">(</span>
-              <span className="text-zinc-200">query</span>
-              <span className="text-zinc-500">,</span>{" "}
-              <span className="text-zinc-600">{"{ scope: user }"}</span>
-              <span className="text-zinc-500">)</span>
+            <p className="overflow-x-auto whitespace-nowrap">
+              <span className="text-emerald-300">const</span>{" "}
+              <span className="text-slate-100">hits</span>{" "}
+              <span className="text-slate-500">=</span>{" "}
+              <span className="text-sky-300">await</span>{" "}
+              <span className="text-slate-200">vectorSearch</span>
+              <span className="text-slate-500">(</span>
+              <span className="text-slate-200">query</span>
+              <span className="text-slate-500">,</span>{" "}
+              <span className="text-slate-500">{"{ k: 8 }"}</span>
+              <span className="text-slate-500">)</span>
             </p>
-            <p>
+            <p className="overflow-x-auto whitespace-nowrap">
               <span className="text-violet-300">return</span>{" "}
-              <span className="text-zinc-200">generate</span>
-              <span className="text-zinc-500">(</span>
-              <span className="text-zinc-200">hits</span>
-              <span className="text-zinc-500">,</span>{" "}
-              <span className="text-zinc-600">{"{ grounded: true }"}</span>
-              <span className="text-zinc-500">)</span>
+              <span className="text-slate-200">generate</span>
+              <span className="text-slate-500">(</span>
+              <span className="text-slate-200">hits</span>
+              <span className="text-slate-500">,</span>{" "}
+              <span className="text-slate-500">{"{ cited: true }"}</span>
+              <span className="text-slate-500">)</span>
             </p>
-            <div className="mt-4 space-y-2 border-t border-white/[0.06] pt-4">
+            <div className="mt-4 space-y-2.5 border-t border-slate-400/10 pt-4">
               {[
-                { label: "chunk · embed", w: "92%", c: "bg-violet-400/70" },
-                { label: "retrieve · top-k", w: "74%", c: "bg-cyan-300/70" },
-                { label: "generate · grounded", w: "63%", c: "bg-emerald-300/70" },
+                { label: "chunk · embed", w: "92%", c: "bg-gradient-to-r from-emerald-400 to-teal-300", pct: "1.2k" },
+                { label: "retrieve · top-k 8", w: "76%", c: "bg-gradient-to-r from-sky-400 to-cyan-300", pct: "38ms" },
+                { label: "generate · cited", w: "64%", c: "bg-gradient-to-r from-violet-400 to-fuchsia-300", pct: "0 halluc." },
               ].map((row) => (
                 <div key={row.label}>
-                  <div className="mb-1 flex justify-between text-[10px] text-zinc-500">
-                    <span>{row.label}</span>
+                  <div className="mb-1 flex items-center justify-between text-[10px] text-slate-400">
+                    <span className="truncate">{row.label}</span>
+                    <span className="ml-2 shrink-0 font-medium text-slate-300">{row.pct}</span>
                   </div>
-                  <div className="h-1 overflow-hidden rounded-full bg-white/[0.06]">
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
                     <motion.div
                       initial={reduce ? { width: row.w } : { width: 0 }}
                       animate={{ width: row.w }}
@@ -99,64 +113,61 @@ function HeroVisual() {
           </div>
 
           {/* side network panel */}
-          <div className="hidden border-l border-white/[0.06] bg-white/[0.015] p-4 sm:block">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-zinc-500">
+          <div className="hidden border-l border-slate-400/10 bg-white/[0.015] p-4 sm:block">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-slate-500">
               pipeline
             </p>
             <ul className="mt-3 space-y-2.5 font-mono text-[11px]">
               {[
-                ["ingest", "emerald"],
-                ["embed", "violet"],
-                ["index", "violet"],
-                ["retrieve", "cyan"],
-                ["generate", "amber"],
+                ["ingest", "bg-emerald-400"],
+                ["embed", "bg-teal-300"],
+                ["index", "bg-sky-400"],
+                ["retrieve", "bg-cyan-300"],
+                ["generate", "bg-violet-400"],
               ].map(([s, c], i) => (
-                <li key={s} className="flex items-center gap-2 text-zinc-400">
-                  <span
-                    className={`h-1.5 w-1.5 rounded-full ${
-                      c === "emerald"
-                        ? "bg-emerald-400"
-                        : c === "violet"
-                          ? "bg-violet-400"
-                          : c === "cyan"
-                            ? "bg-cyan-300"
-                            : "bg-amber-300"
-                    }`}
-                  />
-                  <span className="text-zinc-300">{s}</span>
-                  <span className="ml-auto text-zinc-700">{`0${i + 1}`}</span>
+                <li key={s} className="flex items-center gap-2 text-slate-400">
+                  <span className={`h-1.5 w-1.5 rounded-full ${c}`} />
+                  <span className="text-slate-300">{s}</span>
+                  <span className="ml-auto text-slate-600">{`0${i + 1}`}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-4 rounded-lg border border-white/[0.07] bg-black/40 p-2.5">
-              <p className="font-mono text-[10px] text-zinc-500">trust · proctoring</p>
-              <p className="mt-1 font-mono text-[11px] text-zinc-300">
-                face <span className="text-emerald-300">·</span> gaze{" "}
-                <span className="text-emerald-300">·</span> focus
+            <div className="mt-4 rounded-xl border border-emerald-400/15 bg-emerald-400/[0.06] p-2.5">
+              <p className="font-mono text-[10px] text-emerald-300/80">eval · grounded</p>
+              <p className="mt-1 font-mono text-[11px] text-slate-200">
+                cited <span className="text-emerald-300">✓</span> scoped{" "}
+                <span className="text-emerald-300">✓</span>
               </p>
             </div>
           </div>
         </div>
+
+        {/* terminal footer — mobile visible, compact */}
+        <div className="flex items-center gap-2 border-t border-slate-400/10 bg-black/40 px-3.5 py-2.5 font-mono text-[10.5px] text-slate-400 sm:px-4">
+          <span className="text-emerald-300">➜</span>
+          <span className="truncate">deploy: exam-engine · 400 concurrent · p95 210ms</span>
+          <span className="ml-auto hidden shrink-0 text-slate-500 sm:inline">us · prod</span>
+        </div>
       </motion.div>
 
-      {/* floating chips */}
+      {/* floating chips — desktop only */}
       {!reduce && (
         <>
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-4 top-16 hidden rounded-xl border border-white/10 bg-[#0c0c14]/95 px-3 py-2 shadow-xl backdrop-blur sm:block"
+            className="absolute -left-5 top-14 hidden rounded-2xl border border-slate-400/15 bg-[#0a1120]/95 px-3.5 py-2.5 shadow-2xl backdrop-blur lg:block"
           >
-            <p className="font-mono text-[10px] text-zinc-500">mern · deployed</p>
-            <p className="text-[12px] font-medium text-zinc-200">exam engine + analytics</p>
+            <p className="font-mono text-[10px] uppercase tracking-wider text-emerald-300">mern · live</p>
+            <p className="text-[12.5px] font-semibold text-slate-100">exam engine + analytics</p>
           </motion.div>
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-            className="absolute -right-3 bottom-14 hidden rounded-xl border border-white/10 bg-[#0c0c14]/95 px-3 py-2 shadow-xl backdrop-blur sm:block"
+            className="absolute -right-4 bottom-16 hidden rounded-2xl border border-slate-400/15 bg-[#0a1120]/95 px-3.5 py-2.5 shadow-2xl backdrop-blur lg:block"
           >
-            <p className="font-mono text-[10px] text-zinc-500">mongodb atlas</p>
-            <p className="text-[12px] font-medium text-zinc-200">vector search · user-scoped</p>
+            <p className="font-mono text-[10px] uppercase tracking-wider text-sky-300">atlas vector</p>
+            <p className="text-[12.5px] font-semibold text-slate-100">user-scoped · cited</p>
           </motion.div>
         </>
       )}
@@ -166,118 +177,139 @@ function HeroVisual() {
 
 export function Hero() {
   const reduce = useSafeReducedMotion();
-  // Variants stay STATIC across renders. Only `initial` branches on `reduce`:
-  // `initial` applies at mount only, so the post-hydration flip (false -> true
-  // for reduced-motion users) can never retarget or freeze the entrance —
-  // the previous bug that left this column stuck at opacity 0.
-  // Server + first client render both use "hidden", so hydration always matches.
   const container = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.09 } },
+    show: { transition: { staggerChildren: 0.08 } },
   };
   const item = {
-    hidden: { opacity: 0, y: 22 },
+    hidden: { opacity: 0, y: 24 },
     show: { opacity: 1, y: 0, transition: { duration: 0.65, ease } },
   };
   const initialState = reduce ? false : "hidden";
 
   return (
-    <section id="home" aria-label="Introduction" className="relative overflow-hidden">
+    <section id="home" aria-label="Introduction" className="relative overflow-clip">
       {/* background layers */}
       <div aria-hidden="true" className="absolute inset-0">
-        <div className="bg-grid mask-fade-radial absolute inset-0 opacity-70" />
-        <div className="absolute left-1/2 top-[-320px] h-[560px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.16),transparent_65%)] blur-2xl" />
-        <div className="absolute right-[-160px] top-[30%] h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.08),transparent_65%)] blur-2xl" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-400/40 to-transparent" />
+        <div className="bg-grid mask-fade-radial absolute inset-0 opacity-80" />
+        <div className="absolute left-1/2 top-[-340px] h-[560px] w-[min(920px,120vw)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(52,211,153,0.14),rgba(167,139,250,0.1)_45%,transparent_68%)] blur-2xl animate-aurora" />
+        <div className="absolute right-[-140px] top-[28%] h-[380px] w-[380px] rounded-full bg-[radial-gradient(circle,rgba(34,211,238,0.1),transparent_65%)] blur-2xl" />
+        <div className="absolute left-[-140px] top-[55%] h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.1),transparent_65%)] blur-2xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300/60 to-transparent" />
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl gap-14 px-5 pb-20 pt-14 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:pt-24">
+      <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-5 pb-14 pt-12 sm:gap-14 sm:px-8 sm:pb-20 sm:pt-16 lg:grid-cols-[1.04fr_0.96fr] lg:items-center lg:pt-24">
         <motion.div
           variants={container}
           initial={initialState}
           animate="show"
-          className="max-w-xl"
+          className="min-w-0 max-w-2xl"
         >
           {profile.availability.enabled && (
             <motion.div variants={item}>
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] py-1.5 pl-3 pr-4 text-[12.5px] text-zinc-300 backdrop-blur">
+              <span className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-emerald-300/20 bg-emerald-400/[0.08] py-1.5 pl-3 pr-4 text-[12px] font-medium text-emerald-200 backdrop-blur sm:text-[12.5px]">
                 {profile.availability.dot && (
-                  <span className="relative flex h-2 w-2">
+                  <span className="relative flex h-2 w-2 shrink-0">
                     <span className="absolute h-full w-full animate-pulse-dot rounded-full bg-emerald-400" />
                   </span>
                 )}
-                {profile.availability.label}
+                <span className="truncate">{profile.availability.label}</span>
+                <span className="hidden shrink-0 items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-emerald-300/70 sm:inline-flex">
+                  <Sparkles className="h-3 w-3" aria-hidden="true" /> hiring
+                </span>
               </span>
             </motion.div>
           )}
 
           <motion.p
             variants={item}
-            className="mt-7 font-mono text-[12px] uppercase tracking-[0.24em] text-zinc-500"
+            className="mt-6 font-mono text-[11px] uppercase tracking-[0.26em] text-slate-400 sm:text-[12px]"
           >
-            {profile.name}
+            <span className="text-emerald-300">~/</span> {profile.name}
           </motion.p>
           <motion.h1
             variants={item}
-            className="text-balance mt-3 text-[42px] font-semibold leading-[1.04] tracking-[-0.02em] text-white sm:text-6xl"
+            className="text-balance mt-3 text-[40px] font-bold leading-[1.02] tracking-[-0.03em] text-white sm:text-6xl lg:text-[68px]"
           >
-            Building Intelligent Products{" "}
-            <span className="bg-gradient-to-r from-violet-300 via-blue-300 to-cyan-200 bg-clip-text text-transparent">
-              with AI &amp; Code.
-            </span>
+            Building intelligent products{" "}
+            <span className="text-gradient-hero">with AI &amp; code.</span>
           </motion.h1>
-          <motion.p variants={item} className="mt-5 max-w-lg text-[15.5px] leading-7 text-zinc-400">
+          <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-7 text-slate-400 sm:text-[16px]">
             {profile.summary}{" "}
-            <span className="text-zinc-300">
-              Full Stack AI Engineering, Generative AI and RAG — built for production, not demos.
+            <span className="font-medium text-slate-200">
+              Production RAG, full-stack MERN, and evals with fallbacks.
             </span>
           </motion.p>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
+          {/* CTAs — full-width on tiny screens, 44px+ targets */}
+          <motion.div variants={item} className="mt-7 grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:items-center">
             <Link
               href="/#projects"
-              className="group inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-zinc-200"
+              className="btn-primary-glow group inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-200 px-6 py-3 text-[15px] font-bold text-[#04110b] transition hover:brightness-110 active:scale-[0.99] sm:w-auto"
             >
-              Explore Projects
+              Explore projects
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-medium text-zinc-100 transition hover:border-white/25 hover:bg-white/[0.08]"
-            >
-              Contact Me
-            </Link>
+            <div className="grid grid-cols-2 gap-3 sm:flex sm:gap-3">
+              <a
+                href={profile.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-slate-400/20 bg-white/[0.05] px-5 py-3 text-[14px] font-semibold text-slate-100 backdrop-blur transition hover:border-emerald-300/40 hover:bg-emerald-400/10"
+              >
+                <FileText className="h-4 w-4 text-emerald-300" aria-hidden="true" />
+                Resume
+              </a>
+              <Link
+                href="/#contact"
+                className="inline-flex min-h-[48px] items-center justify-center gap-1.5 rounded-xl border border-transparent px-5 py-3 text-[14px] font-semibold text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
+              >
+                Contact
+                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
           </motion.div>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+          {/* stats — 2x2 on mobile, 4-col on sm+ */}
+          <motion.dl
+            variants={item}
+            className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4"
+            aria-label="Highlights"
+          >
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className="rounded-2xl border border-slate-400/12 bg-white/[0.03] px-4 py-3.5 backdrop-blur transition hover:border-emerald-300/25 hover:bg-emerald-400/[0.06]"
+              >
+                <dt className="order-2 mt-1 text-[11.5px] leading-4 text-slate-400">{s.label}</dt>
+                <dd className="order-1 text-xl font-bold tracking-tight text-white">{s.value}</dd>
+              </div>
+            ))}
+          </motion.dl>
+
+          {/* socials — compact, no break-all */}
+          <motion.div variants={item} className="mt-7 flex flex-wrap items-center gap-2">
             <a
               href={profile.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 text-[13.5px] text-zinc-400 transition hover:text-white"
+              className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-slate-400/12 bg-white/[0.03] px-3 py-2 text-[13px] font-medium text-slate-300 transition hover:border-slate-300/30 hover:text-white"
             >
               <GithubIcon className="h-4 w-4" />
-              <span className="underline-offset-4 group-hover:underline">GitHub</span>
+              GitHub
             </a>
             <a
               href={profile.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 text-[13.5px] text-zinc-400 transition hover:text-white"
+              className="inline-flex min-h-[40px] items-center gap-2 rounded-lg border border-slate-400/12 bg-white/[0.03] px-3 py-2 text-[13px] font-medium text-slate-300 transition hover:border-sky-300/40 hover:text-white"
             >
               <LinkedinIcon className="h-4 w-4" />
-              <span className="underline-offset-4 group-hover:underline">LinkedIn</span>
+              LinkedIn
             </a>
-            <a
-              href={profile.socials.email}
-              className="group inline-flex min-w-0 items-center gap-2 text-[13.5px] text-zinc-400 transition hover:text-white"
-            >
-              <Mail className="h-4 w-4 shrink-0" aria-hidden="true" />
-              <span className="break-all underline-offset-4 group-hover:underline">{profile.email}</span>
-            </a>
-            <span className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-              {profile.location}
+            <span className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg px-2 py-2 text-[13px] text-slate-400">
+              <MapPin className="h-3.5 w-3.5 shrink-0 text-slate-500" aria-hidden="true" />
+              <span className="truncate">{profile.location}</span>
             </span>
           </motion.div>
         </motion.div>
@@ -285,19 +317,24 @@ export function Hero() {
         <HeroVisual />
       </div>
 
-      {/* tech strip */}
-      <div className="relative border-t border-white/[0.06]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-2 px-5 py-5 sm:px-8">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-zinc-500">
-            working with
-          </span>
-          {["Llama 3.1 · Groq", "RAG · Vector Search", "React · Next.js", "Node · MongoDB", "Docker · CI/CD"].map(
-            (t) => (
-              <span key={t} className="font-mono text-[12px] text-zinc-400">
+      {/* tech strip — marquee on mobile, static row on desktop */}
+      <div className="relative border-t border-slate-400/10 bg-black/20">
+        <div className="marquee-mask overflow-hidden">
+          <div className="flex w-max animate-marquee items-center gap-8 px-5 py-4 sm:mx-auto sm:w-full sm:max-w-6xl sm:animate-none sm:flex-wrap sm:gap-x-8 sm:gap-y-2 sm:px-8">
+            <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-300/80">
+              working with
+            </span>
+            {[...techStrip, ...techStrip].map((t, i) => (
+              <span
+                key={`${t}-${i}`}
+                aria-hidden={i >= techStrip.length}
+                className="shrink-0 font-mono text-[12px] text-slate-300 sm:text-slate-400"
+              >
+                <span className="mr-8 inline-block h-1 w-1 rounded-full bg-emerald-400/60 align-middle sm:mr-0 sm:hidden" />
                 {t}
               </span>
-            )
-          )}
+            ))}
+          </div>
         </div>
       </div>
     </section>

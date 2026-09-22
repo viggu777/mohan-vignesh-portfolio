@@ -23,7 +23,7 @@ export function Skills() {
       aria-label="Technical skills"
       className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <SectionHeading
@@ -58,14 +58,14 @@ export function Skills() {
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((cat, i) => (
             <Reveal key={cat.id} delay={(i % 3) * 0.06}>
-              <article className="h-full rounded-2xl border border-white/[0.07] bg-[#0b0b12] p-6 transition-colors hover:border-white/[0.14]">
+              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-[#080d18] p-6 hover:border-emerald-300/20">
                 <h3 className="text-[15px] font-semibold tracking-tight text-white">{cat.label}</h3>
                 <p className="mt-0.5 font-mono text-[11px] text-zinc-500">{cat.description}</p>
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${cat.label} skills`}>
                   {cat.skills.map((s) => (
                     <li
                       key={s}
-                      className="cursor-default rounded-md border border-white/[0.08] bg-white/[0.03] px-2.5 py-1.5 text-[12.5px] text-zinc-300 transition hover:border-violet-400/35 hover:bg-violet-500/10 hover:text-white"
+                      className="cursor-default rounded-md border border-slate-400/12 bg-white/[0.04] px-2.5 py-1.5 text-[12.5px] text-slate-300 transition hover:border-emerald-300/35 hover:bg-emerald-400/10 hover:text-white"
                     >
                       {s}
                     </li>

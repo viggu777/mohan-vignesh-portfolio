@@ -24,7 +24,7 @@ const pillars = [
 export function About() {
   return (
     <section id="about" aria-label="About me" className="relative scroll-mt-20">
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <Reveal>
           <SectionHeading
             eyebrow="About"
@@ -36,7 +36,7 @@ export function About() {
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <article className="group h-full rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6 transition-colors hover:border-violet-400/25 hover:bg-white/[0.035]">
+              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-white/[0.03] p-6 backdrop-blur hover:border-emerald-300/25 hover:bg-emerald-400/[0.04]">
                 <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.05] text-zinc-300">
                   <p.icon className="h-4 w-4" aria-hidden="true" />
                 </div>
@@ -49,7 +49,7 @@ export function About() {
 
         <Reveal delay={0.1}>
           <div className="mt-4 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-            <div className="rounded-2xl border border-white/[0.07] bg-gradient-to-br from-white/[0.04] to-transparent p-6 sm:p-8">
+              <div className="rounded-2xl border border-slate-400/12 bg-gradient-to-br from-emerald-400/[0.07] via-white/[0.03] to-violet-400/[0.06] p-6 sm:p-8">
               <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500">
                 background
               </p>
@@ -75,7 +75,7 @@ export function About() {
               className="rounded-2xl border border-white/[0.07] bg-[#0b0b12] p-6 sm:p-8"
             >
               <div className="flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-violet-500/15 text-violet-300">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-400/15 text-emerald-300">
                   <GraduationCap className="h-4 w-4" aria-hidden="true" />
                 </div>
                 <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-zinc-500">

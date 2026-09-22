@@ -67,8 +67,8 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-white/[0.07] bg-[#060609]/85 backdrop-blur-xl"
+        scrolled || open
+          ? "border-b border-slate-400/10 bg-[#04060c]/85 backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       )}
     >
@@ -81,12 +81,12 @@ export function Navbar() {
           className="group flex items-center gap-3"
           aria-label="Mohan Vignesh — home"
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-gradient-to-br from-violet-500/25 to-cyan-400/15 font-mono text-[13px] font-bold tracking-tight text-white">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-300/25 bg-gradient-to-br from-emerald-400/25 to-violet-500/20 font-mono text-[13px] font-bold tracking-tight text-white shadow-[0_0_20px_-6px_rgba(52,211,153,0.5)]">
             {profile.monogram}
           </span>
-          <span className="hidden text-[13px] font-medium tracking-tight text-zinc-200 sm:block">
+          <span className="hidden text-[13px] font-medium tracking-tight text-slate-200 xs:block sm:block">
             mohanvignesh
-            <span className="text-zinc-600">.dev</span>
+            <span className="text-slate-500">.dev</span>
           </span>
         </Link>
 
@@ -102,8 +102,8 @@ export function Navbar() {
                   className={cn(
                     "rounded-md px-3 py-2 text-[13.5px] transition-colors",
                     isActive
-                      ? "text-white"
-                      : "text-zinc-400 hover:bg-white/[0.05] hover:text-zinc-100"
+                      ? "bg-emerald-400/10 text-emerald-200"
+                      : "text-slate-400 hover:bg-white/[0.05] hover:text-slate-100"
                   )}
                 >
                   {item.label}
@@ -126,7 +126,7 @@ export function Navbar() {
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.05] px-3.5 py-2 text-[13px] font-medium text-zinc-100 transition hover:border-violet-400/40 hover:bg-violet-500/15"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-2 text-[13px] font-bold text-[#04110b] transition hover:brightness-110"
           >
             <FileText className="h-3.5 w-3.5" aria-hidden="true" />
             Resume
@@ -135,7 +135,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-200 md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-400/15 bg-white/[0.04] text-slate-200 backdrop-blur transition hover:border-emerald-300/30 md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -148,40 +148,40 @@ export function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-white/[0.07] bg-[#08080d]/95 backdrop-blur-xl md:hidden"
+          className="border-t border-slate-400/10 bg-[#05080f]/95 backdrop-blur-xl md:hidden"
         >
-          <ul className="space-y-1 px-5 py-4">
+          <ul className="space-y-1 px-5 py-4 pb-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2.5 text-[15px] text-zinc-200 hover:bg-white/[0.05]"
+                  className="block min-h-[48px] rounded-xl px-4 py-3 text-[16px] font-medium text-slate-200 transition hover:bg-emerald-400/10 hover:text-emerald-200"
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li className="flex gap-2 pt-2">
+            <li className="grid grid-cols-2 gap-2.5 pt-3">
               <button
                 type="button"
                 onClick={() => {
                   setOpen(false);
                   openCommandMenu();
                 }}
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3.5 py-3 text-[14px] font-medium text-zinc-200"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-slate-400/15 bg-white/[0.04] px-3.5 py-3 text-[14px] font-semibold text-slate-200"
               >
                 <Command className="h-4 w-4" aria-hidden="true" />
-                Quick jump
+                Jump
               </button>
               <a
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/[0.06] px-3.5 py-3 text-[14px] font-medium text-white"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-300 to-teal-200 px-3.5 py-3 text-[14px] font-bold text-[#04110b]"
               >
                 <FileText className="h-4 w-4" aria-hidden="true" />
-                View Resume
+                Resume
               </a>
             </li>
           </ul>

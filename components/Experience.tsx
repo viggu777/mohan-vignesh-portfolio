@@ -11,7 +11,7 @@ export function Experience() {
       aria-label="Professional experience"
       className="relative scroll-mt-20 border-t border-white/[0.06] bg-white/[0.008]"
     >
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div className="mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <Reveal>
           <SectionHeading
             eyebrow="Experience"
@@ -23,7 +23,7 @@ export function Experience() {
         <ol className="relative mt-12 space-y-5">
           <span
             aria-hidden="true"
-            className="absolute bottom-6 left-[19px] top-2 w-px bg-gradient-to-b from-violet-400/40 via-white/10 to-transparent"
+            className="absolute bottom-6 left-[19px] top-2 w-px bg-gradient-to-b from-emerald-300/50 via-slate-400/20 to-transparent"
           />
           {experience.map((job, i) => (
             <Reveal key={job.company} delay={i * 0.06}>
@@ -36,7 +36,7 @@ export function Experience() {
                     className={`h-1.5 w-1.5 rounded-full ${job.current ? "bg-emerald-400" : "bg-zinc-600"}`}
                   />
                 </span>
-                <article className="rounded-2xl border border-white/[0.07] bg-[#0b0b12]/80 p-6 transition-colors hover:border-white/[0.14] sm:p-7">
+                <article className="card-lift rounded-2xl border border-slate-400/12 bg-[#080d18]/90 p-6 backdrop-blur hover:border-emerald-300/20 sm:p-7">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="flex flex-wrap items-center gap-2 text-[15px] font-semibold tracking-tight text-white">
@@ -58,7 +58,7 @@ export function Experience() {
                   <ul className="mt-4 space-y-2.5">
                     {job.points.map((pt) => (
                       <li key={pt} className="flex gap-2.5 text-[14px] leading-6 text-zinc-400">
-                        <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-violet-400/70" />
+                        <span aria-hidden="true" className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-emerald-300/80" />
                         {pt}
                       </li>
                     ))}

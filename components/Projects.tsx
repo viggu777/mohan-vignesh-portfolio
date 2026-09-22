@@ -31,7 +31,7 @@ export function Projects() {
         aria-hidden="true"
         className="absolute left-1/2 top-[-280px] h-[480px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.09),transparent_65%)] blur-2xl"
       />
-      <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div className="relative mx-auto max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <SectionHeading

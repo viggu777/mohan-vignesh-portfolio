@@ -30,7 +30,7 @@ export const profile: Profile = {
   // 3. For future updates use Drive's "Manage versions" (right-click the file
   //    → Manage versions → Upload new version). The link NEVER changes, so
   //    this file never needs another edit.
-  resumeUrl: "https://drive.google.com/file/d/PASTE_YOUR_FILE_ID/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1B8sULopG3tCX3Zi5XQOdsZYetp7PWwHQ/view?usp=sharing",
   socials: {
     github: "https://github.com/viggu777",
     linkedin: "https://linkedin.com/in/kmvk",

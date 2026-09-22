@@ -40,7 +40,7 @@ export function Spotlight() {
           left: pos.x,
           top: pos.y,
           background:
-            "radial-gradient(circle, rgba(139,92,246,0.09) 0%, rgba(34,211,238,0.05) 35%, transparent 65%)",
+            "radial-gradient(circle, rgba(52,211,153,0.08) 0%, rgba(167,139,250,0.06) 38%, transparent 65%)",
         }}
       />
     </div>

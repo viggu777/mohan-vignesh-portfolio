@@ -13,17 +13,17 @@ export function SectionHeading({
 }) {
   return (
     <div className={cn("max-w-2xl", align === "center" && "mx-auto text-center")}>
-      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-violet-300/90">
-        <span aria-hidden="true" className="mr-2 text-violet-400/60">
+      <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-emerald-300">
+        <span aria-hidden="true" className="mr-2 text-emerald-400/60">
           {"//"}
         </span>
         {eyebrow}
       </p>
-      <h2 className="text-balance mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">
+      <h2 className="text-balance mt-3 text-[28px] font-bold leading-[1.1] tracking-[-0.02em] text-white sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-3 text-[15px] leading-7 text-zinc-400">{description}</p>
+        <p className="mt-3 max-w-xl text-[14.5px] leading-7 text-slate-400 sm:text-[15px]">{description}</p>
       ) : null}
     </div>
   );
