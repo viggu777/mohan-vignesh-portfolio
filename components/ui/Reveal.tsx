@@ -4,10 +4,15 @@ import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { useSafeReducedMotion } from "@/lib/use-safe-reduced-motion";
 
+/**
+ * Scroll reveal — transform + opacity only (compositor-friendly, no layout shift).
+ * Reduced y (16 vs 22) cuts perceived CLS; margin triggers slightly earlier
+ * so content is settled before it enters the viewport.
+ */
 export function Reveal({
   children,
   delay = 0,
-  y = 22,
+  y = 16,
   className,
 }: {
   children: ReactNode;
@@ -26,8 +31,8 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

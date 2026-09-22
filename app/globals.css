@@ -15,6 +15,11 @@
   --color-accent-mint: #5eead4;
   --color-accent-amber: #fbbf24;
 
+  /* Display scale — real contrast: hero >> section >> body >> micro */
+  --text-display-hero: clamp(2.75rem, 7vw, 4.9rem);
+  --text-display-section: clamp(1.9rem, 4.2vw, 2.9rem);
+  --text-display-sub: clamp(1.35rem, 2.6vw, 1.75rem);
+
   --animate-float-slow: float 9s ease-in-out infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
   --animate-spin-slow: spin 24s linear infinite;
@@ -90,6 +95,7 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  font-feature-settings: "ss01", "cv11";
 }
 
 /* Mobile hardening: never allow horizontal scroll from decorative layers */
@@ -154,8 +160,16 @@ svg {
   mask-image: radial-gradient(ellipse 70% 60% at 50% 35%, black 40%, transparent 100%);
 }
 
+.mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
 .text-balance {
   text-wrap: balance;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 .code-glow {
@@ -178,6 +192,8 @@ svg {
   color: transparent;
 }
 
+/* Kept for the single Hero identity card only — other sections use
+   hairline ledger rows (no lift) to cut transform/paint cost. */
 .card-lift {
   transition:
     transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
@@ -190,6 +206,11 @@ svg {
   box-shadow:
     0 20px 50px -20px rgba(0, 0, 0, 0.8),
     0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Cheap row hover: border + background only, no transform → no layout shift. */
+.row-hover {
+  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .btn-primary-glow {
@@ -212,8 +233,77 @@ svg {
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
+/* Editorial hairline rule used by ledger sections */
+.rule-hairline {
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+/* Underline tabs (Projects filters) — no layout shift on toggle */
+.filter-tab {
+  position: relative;
+}
+.filter-tab::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0.6);
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+.filter-tab[data-active="true"]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* ProjectVisual frame polish — shared inner highlight + vignette */
+.visual-frame {
+  contain: content;
+}
+.visual-frame::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 22%),
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 55%);
+}
+.visual-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 -32px 48px -32px rgba(0, 0, 0, 0.8);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe-area: footer + mobile menu never collide with home indicator */
+.safe-pb {
+  padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+}
+
 @media (max-width: 640px) {
   .bg-grid {
     background-size: 32px 32px;
+  }
+}
+
+/* 320px guard: tighten display tracking so nothing overflows */
+@media (max-width: 380px) {
+  body {
+    font-size: 15px;
   }
 }

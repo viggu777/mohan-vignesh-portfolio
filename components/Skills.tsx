@@ -6,16 +6,6 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-const categoryDots = [
-  "bg-violet-400",
-  "bg-sky-400",
-  "bg-emerald-400",
-  "bg-cyan-300",
-  "bg-amber-300",
-  "bg-rose-400",
-  "bg-teal-300",
-];
-
 export function Skills() {
   const [active, setActive] = useState("all");
 
@@ -27,36 +17,39 @@ export function Skills() {
     [active]
   );
 
+  const totalTools = useMemo(
+    () => skillCategories.reduce((n, c) => n + c.skills.length, 0),
+    []
+  );
+
   return (
     <section
       id="skills"
       aria-label="Technical skills"
-      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06] bg-white/[0.008]"
+      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
     >
-      <div
-        aria-hidden="true"
-        className="absolute -right-40 top-[-80px] h-[280px] w-[420px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(251,191,36,0.06),transparent_65%)] blur-2xl"
-      />
-      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-8 sm:py-12">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <Reveal>
+      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
+        <div className="flex flex-wrap items-end justify-between gap-5">
+          <Reveal className="min-w-0">
             <SectionHeading
+              index="04"
               eyebrow="Skills"
               accent="amber"
               title="A practical, production-oriented toolkit."
-              description="No proficiency bars or fake ratings — just the tools I actually build and deploy with, grouped by where they run."
+              description={`No proficiency bars or fake ratings — ${skillCategories.length} groups, ${totalTools} tools I actually build and deploy with.`}
             />
           </Reveal>
         </div>
 
+        {/* Dense mono filter rail — 44px targets, no card chrome */}
         <Reveal delay={0.05}>
           <div
-            className="mt-5 flex flex-wrap gap-1.5"
+            className="no-scrollbar -mx-4 mt-7 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
             role="group"
             aria-label="Filter skill categories"
           >
             <FilterPill active={active === "all"} onClick={() => setActive("all")}>
-              All
+              All · {totalTools}
             </FilterPill>
             {skillCategories.map((c) => (
               <FilterPill
@@ -70,32 +63,49 @@ export function Skills() {
           </div>
         </Reveal>
 
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+        {/* Dense ledger: one hairline row per group — the densest section */}
+        <div className="mt-4 border-t border-white/[0.08]">
           {visible.map((cat, i) => (
-            <Reveal key={cat.id} delay={(i % 3) * 0.06} className="h-full">
-              <article className="card-lift h-full rounded-2xl border border-slate-400/12 bg-[#080d18] p-5 hover:border-white/[0.14] sm:p-6">
-                <div className="flex items-center gap-2">
-                  <span
-                    aria-hidden="true"
-                    className={`h-2 w-2 shrink-0 rounded-full ${categoryDots[i % categoryDots.length]}`}
-                  />
-                  <h3 className="text-[15px] font-semibold tracking-tight text-white">{cat.label}</h3>
+            <Reveal key={cat.id} delay={Math.min(i, 3) * 0.04}>
+              <div className="row-hover grid gap-2 border-b border-white/[0.07] py-5 hover:bg-white/[0.015] sm:grid-cols-[260px_1fr] sm:gap-8 sm:py-6">
+                <div className="min-w-0">
+                  <p className="flex items-baseline gap-2.5">
+                    <span className="font-mono text-[11px] text-slate-600">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="truncate text-[15px] font-semibold tracking-tight text-white">
+                      {cat.label}
+                    </span>
+                  </p>
+                  <p className="mt-1 pl-8 font-mono text-[11px] text-slate-600">
+                    {cat.description} · {cat.skills.length}
+                  </p>
                 </div>
-                <p className="mt-0.5 font-mono text-[11px] text-zinc-500">{cat.description}</p>
-                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={`${cat.label} skills`}>
-                  {cat.skills.map((s) => (
-                    <li
-                      key={s}
-                      className="cursor-default rounded-md border border-slate-400/12 bg-white/[0.04] px-2.5 py-1.5 text-[12.5px] text-slate-300 transition hover:border-white/25 hover:bg-white/[0.07] hover:text-white"
-                    >
-                      {s}
+                <ul
+                  className="flex min-w-0 flex-wrap gap-x-1 gap-y-2 pl-8 sm:pl-0"
+                  aria-label={`${cat.label} skills`}
+                >
+                  {cat.skills.map((s, si) => (
+                    <li key={s} className="flex items-center gap-1 text-[13.5px]">
+                      <span className="cursor-default rounded px-1.5 py-1 text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white">
+                        {s}
+                      </span>
+                      {si < cat.skills.length - 1 && (
+                        <span aria-hidden="true" className="text-[10px] text-slate-700">
+                          /
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
-              </article>
+              </div>
             </Reveal>
           ))}
         </div>
+        <p className="mt-4 font-mono text-[11px] text-slate-600">
+          {visible.length} group{visible.length === 1 ? "" : "s"} ·{" "}
+          {visible.reduce((n, c) => n + c.skills.length, 0)} tools shown
+        </p>
       </div>
     </section>
   );
@@ -116,10 +126,10 @@ function FilterPill({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "rounded-full border px-3.5 py-1.5 text-[13px] transition",
+        "inline-flex min-h-[44px] flex-none items-center whitespace-nowrap rounded-full border px-4 py-2 font-mono text-[12px] transition",
         active
-          ? "border-white bg-white font-medium text-black"
-          : "border-white/10 bg-white/[0.03] text-zinc-400 hover:border-white/25 hover:text-white"
+          ? "border-white/80 bg-white font-semibold text-black"
+          : "border-white/10 bg-transparent text-slate-500 hover:border-white/25 hover:text-white"
       )}
     >
       {children}
