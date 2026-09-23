@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { ArrowUpRight, Copy, FileText, Mail } from "lucide-react";
 import { navItems, profile } from "@/data/profile";
 import { projects } from "@/data/projects";
-import { cn } from "@/lib/utils";
 
 interface CommandItem {
   label: string;
@@ -124,7 +123,8 @@ export function CommandMenu() {
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-start justify-center bg-black/60 px-4 pt-[14vh] backdrop-blur-sm"
+      className="fixed inset-0 z-[80] flex items-start justify-center px-4 pt-[15vh]"
+      style={{ background: "rgba(7,10,16,0.7)", backdropFilter: "blur(6px)" }}
       onClick={() => setOpen(false)}
       role="presentation"
     >
@@ -132,17 +132,25 @@ export function CommandMenu() {
         role="dialog"
         aria-modal="true"
         aria-label="Quick command menu"
-        className="w-full max-w-lg overflow-hidden rounded-xl border border-white/10 bg-[#0c0c13] shadow-2xl"
+        className="w-full max-w-md overflow-hidden rounded-lg border"
+        style={{
+          background: "#111927",
+          borderColor: "rgba(255,255,255,0.12)",
+          boxShadow: "0 24px 60px rgba(0,0,0,0.6)",
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-3 border-b border-white/[0.07] px-4">
-          <span className="font-mono text-xs text-zinc-500">›</span>
+        <div
+          className="flex items-center gap-3 px-4 py-3"
+          style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+        >
+          <span className="font-mono text-sm text-[#3D506A]" aria-hidden="true">›</span>
           <input
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={onInputKey}
-            placeholder="Type a command — try “project”, “email”, “resume”…"
+            placeholder="Type a command or search..."
             aria-label="Search commands"
             aria-activedescendant={
               items.length > 0 ? `cmd-option-${safeHighlight}` : undefined
@@ -151,21 +159,23 @@ export function CommandMenu() {
             role="combobox"
             aria-expanded="true"
             aria-autocomplete="list"
-            className="h-12 w-full bg-transparent text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none"
+            className="h-8 w-full bg-transparent text-sm text-[#EEF2FF] placeholder:text-[#3D506A] focus:outline-none"
           />
-          <kbd className="rounded border border-white/10 bg-white/[0.05] px-1.5 py-0.5 font-mono text-[10px] text-zinc-500">
+          <kbd className="tech-label rounded border border-[rgba(255,255,255,0.07)] bg-white/[0.03] px-1.5 py-0.5 text-[10px] text-[#3D506A]">
             ESC
           </kbd>
         </div>
         <ul
           id="cmd-listbox"
           ref={listRef}
-          className="max-h-72 overflow-y-auto p-2"
+          className="max-h-72 overflow-y-auto py-1"
           role="listbox"
           aria-label="Commands"
         >
           {items.length === 0 && (
-            <li className="px-3 py-6 text-center text-sm text-zinc-500">No matches.</li>
+            <li className="px-4 py-6 text-center text-[13px] text-[#3D506A]">
+              {query ? `No results for "${query}"` : "No matches."}
+            </li>
           )}
           {items.map((item, i) => {
             const selected = i === safeHighlight;
@@ -178,32 +188,34 @@ export function CommandMenu() {
                   onMouseEnter={() => setHighlight(i)}
                   onFocus={() => setHighlight(i)}
                   onClick={item.run}
-                  className={cn(
-                    "flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors",
-                    selected
-                      ? "bg-white/[0.08] text-white"
-                      : "text-zinc-300 hover:bg-white/[0.06]"
-                  )}
+                  className="flex w-full items-center justify-between gap-3 px-4 py-2.5 text-left text-[13.5px] transition-colors"
+                  style={{
+                    background: selected ? "#162030" : "transparent",
+                    color: selected ? "#EEF2FF" : "#7A90B0",
+                  }}
                 >
                   <span className="flex items-center gap-2">
                     {item.label.includes("Copy") ? (
-                      <Copy className="h-3.5 w-3.5 text-zinc-500" aria-hidden="true" />
+                      <Copy className="h-3.5 w-3.5 text-[#3D506A]" aria-hidden="true" />
                     ) : item.label.includes("resume") ? (
-                      <FileText className="h-3.5 w-3.5 text-zinc-500" aria-hidden="true" />
+                      <FileText className="h-3.5 w-3.5 text-[#3D506A]" aria-hidden="true" />
                     ) : item.label.includes("email") ? (
-                      <Mail className="h-3.5 w-3.5 text-zinc-500" aria-hidden="true" />
+                      <Mail className="h-3.5 w-3.5 text-[#3D506A]" aria-hidden="true" />
                     ) : (
-                      <ArrowUpRight className="h-3.5 w-3.5 text-zinc-500" aria-hidden="true" />
+                      <ArrowUpRight className="h-3.5 w-3.5 text-[#3D506A]" aria-hidden="true" />
                     )}
                     {item.label}
                   </span>
-                  <span className="truncate font-mono text-[11px] text-zinc-600">{item.hint}</span>
+                  <span className="tech-label truncate text-[10px] text-[#3D506A]">{item.hint}</span>
                 </button>
               </li>
             );
           })}
         </ul>
-        <p className="border-t border-white/[0.06] px-4 py-2 font-mono text-[10px] text-zinc-600">
+        <p
+          className="tech-label border-t px-4 py-2 text-[10px] text-[#3D506A]"
+          style={{ borderTopColor: "rgba(255,255,255,0.07)" }}
+        >
           ↑↓ to navigate · ↵ to run · esc to close
         </p>
       </div>

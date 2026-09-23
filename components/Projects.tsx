@@ -2,29 +2,22 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { GithubIcon } from "@/components/icons";
-import type { Project, ProjectCategory } from "@/types";
+import type { ProjectCategory } from "@/types";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ProjectVisual } from "@/components/ProjectVisual";
-import { Badge } from "@/components/ui/Badge";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { ACCENT_HEX } from "@/lib/accent";
 import { cn } from "@/lib/utils";
 
 const filters: Array<"All" | ProjectCategory> = ["All", "Full Stack", "Mobile", "AI / LLM"];
 
-const featureGlow: Record<Project["accent"], string> = {
-  violet: "bg-[radial-gradient(ellipse_60%_50%_at_30%_20%,rgba(167,139,250,0.12),transparent_70%)]",
-  cyan: "bg-[radial-gradient(ellipse_60%_50%_at_30%_20%,rgba(34,211,238,0.10),transparent_70%)]",
-  amber: "bg-[radial-gradient(ellipse_60%_50%_at_30%_20%,rgba(251,191,36,0.10),transparent_70%)]",
-  rose: "bg-[radial-gradient(ellipse_60%_50%_at_30%_20%,rgba(251,113,133,0.10),transparent_70%)]",
-};
-
 /**
- * Magazine layout: one full-bleed feature (large ProjectVisual) +
- * compact 2-col grid for the rest. Underline filter tabs, no boxes.
+ * Magazine layout: one featured showcase + compact 3-col grid.
+ * Figma styling — bordered filter pills, violet FEATURED mark,
+ * serif project names, technology markers, compact flow strips.
  */
 export function Projects() {
   const [active, setActive] = useState<(typeof filters)[number]>("All");
@@ -47,31 +40,31 @@ export function Projects() {
       aria-label="Featured projects"
       className="relative scroll-mt-20 overflow-hidden"
     >
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
-        <div className="flex flex-wrap items-end justify-between gap-5">
+      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <Reveal className="min-w-0">
             <SectionHeading
               index="03"
-              eyebrow="Featured projects"
+              eyebrow="Projects"
               accent="violet"
               title="Production systems, different problems."
               description="Each opens a case study with architecture, features, and engineering trade-offs. Previews are illustrative diagrams — not screenshots."
             />
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="tabular font-mono text-[12px] text-slate-600">
+            <p className="tabular tech-label text-[#3D506A]">
               {String(visible.length).padStart(2, "0")}
-              <span className="text-slate-700"> / {String(projects.length).padStart(2, "0")}</span>
+              <span> / {String(projects.length).padStart(2, "0")}</span>
             </p>
           </Reveal>
         </div>
 
-        {/* Underline tabs — scrollable on mobile, 44px targets */}
+        {/* Filter pills — scrollable on mobile, 44px targets */}
         <Reveal delay={0.05}>
           <div
             role="group"
             aria-label="Filter projects by category"
-            className="no-scrollbar -mx-4 mt-6 flex gap-0.5 overflow-x-auto border-b border-white/[0.08] px-4 sm:mx-0 sm:px-0"
+            className="no-scrollbar -mx-4 mt-8 flex gap-1.5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0"
           >
             {filters.map((f) => {
               const isActive = active === f;
@@ -83,8 +76,10 @@ export function Projects() {
                   aria-pressed={isActive}
                   data-active={isActive}
                   className={cn(
-                    "filter-tab inline-flex min-h-[44px] flex-none items-center whitespace-nowrap px-3.5 py-2.5 text-[13px] font-medium transition-colors sm:px-4",
-                    isActive ? "text-white" : "text-slate-500 hover:text-slate-200"
+                    "tech-label inline-flex min-h-[44px] flex-none items-center whitespace-nowrap rounded border px-3 py-1.5 text-[11px] transition-colors",
+                    isActive
+                      ? "border-transparent bg-[#A78BFA] font-semibold text-[#070A10]"
+                      : "border-[rgba(255,255,255,0.07)] bg-transparent text-[#3D506A] hover:border-[rgba(255,255,255,0.12)] hover:text-[#7A90B0]"
                   )}
                 >
                   {f}
@@ -97,53 +92,61 @@ export function Projects() {
         {/* Feature — the ProjectVisual showcase */}
         {showFeature && featured && (
           <Reveal delay={0.05}>
-            <article className="group relative mt-8 overflow-hidden rounded-2xl border border-white/[0.09] bg-[#080d18]">
-              <div aria-hidden="true" className={cn("absolute inset-0", featureGlow[featured.accent])} />
-              <div className="relative grid min-w-0 lg:grid-cols-[1.15fr_0.85fr]">
-                <div className="relative min-w-0 overflow-hidden border-b border-white/[0.07] lg:border-b-0 lg:border-r">
+            <article className="group relative mt-8 overflow-hidden rounded-lg border border-[rgba(255,255,255,0.07)] bg-[#0D1420]">
+              <div className="relative grid min-w-0 lg:grid-cols-[1.4fr_1fr]">
+                <div className="relative min-w-0 overflow-hidden border-b border-[rgba(255,255,255,0.07)] lg:border-b-0 lg:border-r">
                   <div className="h-full transition-transform duration-500 ease-out group-hover:scale-[1.012]">
                     <ProjectVisual project={featured} />
                   </div>
-                  <span className="absolute left-4 top-4 z-[2] rounded-full border border-white/15 bg-black/70 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-slate-200 backdrop-blur">
-                    ★ featured
+                  <span
+                    className="tech-label absolute left-4 top-4 z-[2] rounded border px-2 py-0.5 text-[10px]"
+                    style={{
+                      background: `${ACCENT_HEX[featured.accent]}1F`,
+                      color: ACCENT_HEX[featured.accent],
+                      borderColor: `${ACCENT_HEX[featured.accent]}33`,
+                    }}
+                  >
+                    Featured
                   </span>
                 </div>
-                <div className="relative flex min-w-0 flex-col justify-center p-6 pb-7 sm:p-8 sm:pb-10">
-                  <p className="truncate font-mono text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                    {featured.categoryLabel}
-                  </p>
-                  <h3 className="text-balance mt-3 text-[clamp(1.6rem,3.4vw,2.2rem)] font-bold leading-[1.05] tracking-[-0.03em] text-white">
-                    <Link
-                      href={`/projects/${featured.slug}`}
-                      aria-label={`${featured.name} — view case study`}
-                      className="after:absolute after:inset-0 after:rounded-2xl focus-visible:outline-none"
+                <div className="relative flex min-w-0 flex-col justify-between bg-[#111927] p-8">
+                  <div>
+                    <p className="truncate tech-label text-[10px] uppercase text-[#3D506A]">
+                      {featured.categoryLabel}
+                    </p>
+                    <h3 className="text-balance mt-3 font-display text-[26px] leading-[1.2] tracking-[-0.01em] text-[#EEF2FF]">
+                      <Link
+                        href={`/projects/${featured.slug}`}
+                        aria-label={`${featured.name} — view case study`}
+                        className="after:absolute after:inset-0 after:rounded-lg focus-visible:outline-none"
+                      >
+                        {featured.name}
+                      </Link>
+                    </h3>
+                    <p
+                      className="mt-1 text-sm italic"
+                      style={{ color: ACCENT_HEX[featured.accent] }}
                     >
-                      {featured.name}
-                    </Link>
-                  </h3>
-                  <p className="mt-2 text-[13.5px] font-medium text-slate-400">{featured.tagline}</p>
-                  <p className="mt-3 max-w-md text-[14px] leading-6 text-slate-400">
-                    {featured.description}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-1.5" aria-label={`${featured.name} technologies`}>
-                    {featured.tech.slice(0, 6).map((t) => (
-                      <Badge key={t}>{t}</Badge>
-                    ))}
+                      {featured.tagline}
+                    </p>
+                    <p className="mt-3 max-w-md text-sm leading-7 text-[#7A90B0]">
+                      {featured.description}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-1.5" aria-label={`${featured.name} technologies`}>
+                      {featured.tech.slice(0, 6).map((t) => (
+                        <TechBadge key={t} name={t} size="xs" tone="surface" />
+                      ))}
+                    </div>
                   </div>
-                  <div className="relative z-10 mt-6 flex flex-wrap items-center gap-2">
-                    <span className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-white px-4 py-2.5 text-[13.5px] font-semibold text-black transition group-hover:bg-slate-200">
-                      Read case study
-                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                    </span>
+                  <div className="relative z-10 mt-6 flex flex-wrap gap-3">
                     {featured.liveUrl && (
                       <a
                         href={featured.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[13px] font-medium text-zinc-100 transition hover:border-white/25 hover:bg-white/[0.08]"
+                        className="tech-label inline-flex min-h-[44px] items-center rounded bg-[#A78BFA] px-3.5 py-2 text-xs font-semibold text-white transition hover:brightness-110"
                       >
-                        <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
-                        Live
+                        Live ↗
                       </a>
                     )}
                     {featured.githubUrl && (
@@ -152,11 +155,15 @@ export function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${featured.name} GitHub repository`}
-                        className="inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-4 py-2.5 text-[13px] font-medium text-zinc-100 transition hover:border-white/25 hover:bg-white/[0.08]"
+                        className="tech-label inline-flex min-h-[44px] items-center rounded border border-[rgba(255,255,255,0.12)] px-3.5 py-2 text-xs text-[#7A90B0] transition hover:text-[#EEF2FF]"
                       >
-                        <GithubIcon className="h-3.5 w-3.5" />
                         GitHub
                       </a>
+                    )}
+                    {!featured.liveUrl && !featured.githubUrl && (
+                      <span className="tech-label inline-flex min-h-[44px] items-center text-xs text-[#3D506A]">
+                        Case study ↓
+                      </span>
                     )}
                   </div>
                 </div>
@@ -165,16 +172,16 @@ export function Projects() {
           </Reveal>
         )}
 
-        {/* Grid — 2-col for air (was cramped 3-col) */}
-        <div className="mt-5 grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2 lg:items-stretch">
+        {/* Grid — compact cards with flow strips */}
+        <div className="mt-4 grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {gridItems.map((p, i) => (
-            <Reveal key={p.slug} delay={(i % 2) * 0.06} className="h-full min-w-0">
+            <Reveal key={p.slug} delay={(i % 3) * 0.06} className="h-full min-w-0">
               <ProjectCard project={p} />
             </Reveal>
           ))}
         </div>
 
-        <p className="mt-5 font-mono text-[11px] leading-5 text-slate-600">
+        <p className="mt-5 font-mono text-[11px] leading-5 text-[#3D506A]">
           Showing {visible.length} of {projects.length} — {active}
         </p>
       </div>

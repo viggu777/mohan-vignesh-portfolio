@@ -1,5 +1,48 @@
 import type { Project } from "@/types";
 import { cn } from "@/lib/utils";
+import { ACCENT_HEX } from "@/lib/accent";
+
+/**
+ * Elegant pipeline diagrams per project (Figma visual language).
+ * Shared system, varied composition: each project names its own
+ * technical flow (exam → trust score → results, pdf → answer, …).
+ */
+export const FLOW_STEPS: Record<Project["visual"], string[]> = {
+  proctoring: ["EXAM", "QUESTIONS", "PROCTOR", "TRUST SCORE", "RESULTS"],
+  rag: ["PDF", "CHUNK", "EMBED", "VECTOR", "LLM", "ANSWER"],
+  admin: ["ADMIN", "FRANCHISE", "PAYMENT", "INVOICE", "EMAIL"],
+  academy: ["PORTAL", "AUTH", "MEDIA", "DOCKER", "DEPLOY"],
+  crm: ["DRIVES", "APPLIED", "SYNC", "PLACED"],
+};
+
+/** Compact horizontal flow strip for project cards (first 4 steps). */
+export function FlowStrip({ project }: { project: Project }) {
+  const steps = FLOW_STEPS[project.visual].slice(0, 4);
+  const accent = ACCENT_HEX[project.accent];
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-1.5" aria-hidden="true">
+      {steps.map((step, i) => (
+        <span key={step} className="flex items-center gap-1.5">
+          <span
+            className="tech-label rounded px-2 py-0.5"
+            style={{
+              background: i === 0 ? `${accent}1F` : "#070A10",
+              border: `1px solid ${i === 0 ? `${accent}4D` : "rgba(255,255,255,0.07)"}`,
+              color: i === 0 ? accent : "#3D506A",
+              fontSize: "9px",
+              letterSpacing: "0.06em",
+            }}
+          >
+            {step}
+          </span>
+          {i < steps.length - 1 && (
+            <span style={{ color: "#2A3A50", fontSize: "10px" }}>→</span>
+          )}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 /**
  * Abstract illustrative previews per project.
@@ -18,7 +61,7 @@ import { cn } from "@/lib/utils";
 export function ProjectVisual({ project }: { project: Project }) {
   if (project.visual === "proctoring") {
     return (
-      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#08080f] sm:min-h-[280px]" aria-hidden="true">
+      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#111927] sm:min-h-[280px]" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(167,139,250,0.12),transparent_70%)]" />
         <div className="absolute inset-0 bg-grid opacity-60" />
         <div className="relative z-[2] grid min-w-0 grid-cols-1 gap-3 p-3.5 pb-9 sm:grid-cols-[1fr_150px] sm:p-5 sm:pb-9">
@@ -68,14 +111,13 @@ export function ProjectVisual({ project }: { project: Project }) {
             </div>
           </div>
         </div>
-        <VisualCaption />
       </div>
     );
   }
 
   if (project.visual === "rag") {
     return (
-      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#060a0e] sm:min-h-[280px]" aria-hidden="true">
+      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#111927] sm:min-h-[280px]" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_25%,rgba(34,211,238,0.12),transparent_70%)]" />
         <div className="absolute inset-0 bg-grid opacity-40" />
         <div className="relative z-[2] grid min-w-0 grid-cols-1 gap-3 p-3.5 pb-9 sm:grid-cols-[130px_1fr] sm:p-5 sm:pb-9">
@@ -117,7 +159,6 @@ export function ProjectVisual({ project }: { project: Project }) {
             </div>
           </div>
         </div>
-        <VisualCaption />
       </div>
     );
   }
@@ -125,7 +166,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   // academy: portal + deploy pipeline
   if (project.visual === "academy") {
     return (
-      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#0c0709] sm:min-h-[280px]" aria-hidden="true">
+      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#111927] sm:min-h-[280px]" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_70%_20%,rgba(251,113,133,0.11),transparent_70%)]" />
         <div className="relative z-[2] grid min-w-0 grid-cols-1 gap-3 p-3.5 pb-9 sm:grid-cols-[1fr_140px] sm:p-5 sm:pb-9">
           {/* academy portal mock */}
@@ -191,7 +232,6 @@ export function ProjectVisual({ project }: { project: Project }) {
             ))}
           </div>
         </div>
-        <VisualCaption />
       </div>
     );
   }
@@ -200,7 +240,7 @@ export function ProjectVisual({ project }: { project: Project }) {
   // Distinct from the tea franchise "admin" visual (no chai/orders rows).
   if (project.visual === "crm") {
     return (
-      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#050b0e] sm:min-h-[280px]" aria-hidden="true">
+      <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#111927] sm:min-h-[280px]" aria-hidden="true">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(34,211,238,0.12),transparent_70%)]" />
         <div className="relative z-[2] grid min-w-0 grid-cols-1 gap-3 p-3.5 pb-9 sm:grid-cols-[1fr_140px] sm:p-5 sm:pb-9">
           {/* placement board mock */}
@@ -277,14 +317,13 @@ export function ProjectVisual({ project }: { project: Project }) {
             </div>
           </div>
         </div>
-        <VisualCaption />
       </div>
     );
   }
 
   // admin (Tea Mahall franchise)
   return (
-    <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#0a0805] sm:min-h-[280px]" aria-hidden="true">
+    <div className="visual-frame relative isolate min-h-[220px] overflow-hidden border-b border-white/[0.07] bg-[#111927] sm:min-h-[280px]" aria-hidden="true">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_30%_20%,rgba(251,191,36,0.10),transparent_70%)]" />
       <div className="relative z-[2] min-w-0 p-3.5 pb-9 sm:p-5 sm:pb-9">
         <div className="rounded-xl border border-white/[0.12] bg-[#0d0c09]/95 p-3.5 shadow-[0_16px_40px_-20px_rgba(0,0,0,0.9)] sm:p-4">
@@ -319,16 +358,7 @@ export function ProjectVisual({ project }: { project: Project }) {
           </div>
         </div>
       </div>
-      <VisualCaption />
     </div>
   );
 }
 
-function VisualCaption() {
-  return (
-    <span className="absolute bottom-2 right-3 z-[2] flex items-center gap-1.5 rounded-full border border-white/10 bg-black/70 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.14em] text-zinc-500 backdrop-blur">
-      <span className="h-1 w-1 rounded-full bg-emerald-400/70" />
-      illustrative preview
-    </span>
-  );
-}

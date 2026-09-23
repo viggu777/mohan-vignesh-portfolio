@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, X, FileText, Command, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { navItems, profile } from "@/data/profile";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ export function Navbar() {
     const onScroll = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
-        const next = window.scrollY > 24;
+        const next = window.scrollY > 40;
         if (next !== last) {
           last = next;
           setScrolled(next);
@@ -80,39 +80,37 @@ export function Navbar() {
 
   return (
     <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || open
-          ? "border-b border-white/[0.08] bg-[#04060c]/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      )}
+      className="fixed inset-x-0 top-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled || open ? "rgba(13,20,32,0.92)" : "transparent",
+        borderBottom:
+          scrolled || open ? "1px solid rgba(255,255,255,0.07)" : "1px solid transparent",
+        backdropFilter: scrolled || open ? "blur(12px)" : "none",
+        WebkitBackdropFilter: scrolled || open ? "blur(12px)" : "none",
+      }}
     >
+      {/* h-16 preserves the header offset contract (pt-16 + scroll-mt-20 + 88px). */}
       <nav
         aria-label="Primary"
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-8"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:px-6"
       >
-        {/* Wordmark: monogram + mono handle + live dot */}
+        {/* Wordmark: serif italic name + mono mark */}
         <Link
           href="/#home"
-          className="group flex min-w-0 items-center gap-2.5"
+          className="flex min-w-0 items-center gap-2"
           aria-label="Mohan Vignesh — home"
+          style={{ textDecoration: "none" }}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-emerald-300/25 bg-gradient-to-br from-emerald-400/25 to-violet-500/20 font-mono text-[13px] font-bold tracking-tight text-white">
-            {profile.monogram}
+          <span
+            className="font-display truncate text-[18px] italic tracking-[-0.01em] text-[#EEF2FF]"
+          >
+            {profile.firstName}
           </span>
-          <span className="hidden min-w-0 items-baseline gap-2 sm:flex">
-            <span className="max-w-[140px] truncate text-[13px] font-medium tracking-tight text-slate-200">
-              mohanvignesh<span className="text-slate-500">.dev</span>
-            </span>
-            <span className="flex shrink-0 items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300/80">
-              <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-emerald-400" />
-              open
-            </span>
-          </span>
+          <span className="tech-label shrink-0 text-[10px] text-[#3D506A]">/MV</span>
         </Link>
 
-        {/* Desktop: hairline pill with active dot (no filled chips) */}
-        <ul className="hidden items-center gap-0.5 rounded-full border border-white/[0.08] bg-white/[0.02] p-1 md:flex">
+        {/* Desktop: quiet text links, active section in primary */}
+        <ul className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => {
             const id = hashOf(item.href).replace("#", "");
             const isActive = isHome && active === id;
@@ -122,17 +120,11 @@ export function Navbar() {
                   href={item.href}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "relative flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] transition-colors",
-                    isActive ? "text-white" : "text-slate-500 hover:text-slate-100"
+                    "text-sm transition-colors",
+                    isActive ? "text-[#EEF2FF]" : "text-[#7A90B0] hover:text-[#EEF2FF]"
                   )}
+                  style={{ textDecoration: "none" }}
                 >
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "h-1 w-1 rounded-full transition-all",
-                      isActive ? "bg-emerald-300 opacity-100" : "bg-transparent opacity-0"
-                    )}
-                  />
                   {item.label}
                 </Link>
               </li>
@@ -140,34 +132,30 @@ export function Navbar() {
           })}
         </ul>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
           <button
             type="button"
             onClick={openCommandMenu}
             aria-label="Open quick navigation (Command K)"
-            className="inline-flex h-11 items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 font-mono text-[11px] text-zinc-500 transition hover:border-white/25 hover:text-zinc-200"
+            className="tech-label flex items-center gap-2 rounded border border-transparent px-2.5 py-1.5 text-xs text-[#3D506A] transition hover:border-[rgba(255,255,255,0.12)] hover:text-[#7A90B0]"
+            style={{ borderColor: "rgba(255,255,255,0.07)" }}
           >
-            <Command className="h-3 w-3" aria-hidden="true" />
-            <kbd className="font-mono">K</kbd>
+            <span>⌘K</span>
           </button>
           <a
             href={profile.resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex h-11 items-center gap-1.5 rounded-lg bg-white px-3.5 text-[13px] font-semibold text-black transition hover:bg-slate-200"
+            className="tech-label rounded bg-[#EEF2FF] px-3.5 py-1.5 text-xs font-semibold text-[#070A10] transition hover:opacity-90"
+            style={{ textDecoration: "none", letterSpacing: "0.03em" }}
           >
-            <FileText className="h-3.5 w-3.5" aria-hidden="true" />
             Resume
-            <ArrowUpRight
-              className="h-3.5 w-3.5 opacity-0 transition group-hover:opacity-60"
-              aria-hidden="true"
-            />
           </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-slate-200 backdrop-blur transition hover:border-white/25 md:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded text-[#7A90B0] transition hover:text-[#EEF2FF] md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -180,10 +168,14 @@ export function Navbar() {
       {open && (
         <div
           id="mobile-menu"
-          className="border-t border-white/[0.07] bg-[#05080f]/95 backdrop-blur-xl md:hidden"
+          className="border-t md:hidden"
+          style={{
+            background: "#0D1420",
+            borderTopColor: "rgba(255,255,255,0.07)",
+          }}
         >
-          <ul className="safe-pb space-y-0.5 px-5 py-4 pt-4">
-            {navItems.map((item, i) => {
+          <ul className="safe-pb flex flex-col gap-1 px-6 pb-5 pt-3">
+            {navItems.map((item) => {
               const id = hashOf(item.href).replace("#", "");
               const isActive = isHome && active === id;
               return (
@@ -191,52 +183,39 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
+                    aria-current={isActive ? "true" : undefined}
                     className={cn(
-                      "flex min-h-[52px] items-center justify-between rounded-xl px-4 py-3 transition",
-                      isActive
-                        ? "bg-white/[0.06] text-white"
-                        : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
+                      "flex min-h-[48px] items-center rounded py-2 text-[15px] transition-colors",
+                      isActive ? "text-[#EEF2FF]" : "text-[#7A90B0] hover:text-[#EEF2FF]"
                     )}
+                    style={{ textDecoration: "none" }}
                   >
-                    <span className="flex items-baseline gap-3">
-                      <span className="font-mono text-[11px] text-slate-600">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-[17px] font-semibold tracking-tight">
-                        {item.label}
-                      </span>
-                    </span>
-                    <ArrowUpRight className="h-4 w-4 text-slate-600" aria-hidden="true" />
+                    {item.label}
                   </Link>
                 </li>
               );
             })}
-            <li className="grid grid-cols-2 gap-2.5 pt-3">
+            <li className="flex gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => {
                   setOpen(false);
                   openCommandMenu();
                 }}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3.5 py-3 text-[14px] font-semibold text-slate-200"
+                className="tech-label flex-1 rounded border py-2.5 text-center text-[11px] text-[#3D506A]"
+                style={{ borderColor: "rgba(255,255,255,0.07)" }}
               >
-                <Command className="h-4 w-4" aria-hidden="true" />
-                Jump
+                ⌘K Command
               </button>
               <a
                 href={profile.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-white px-3.5 py-3 text-[14px] font-semibold text-black"
+                className="tech-label flex-1 rounded bg-[#EEF2FF] py-2.5 text-center text-[11px] font-semibold text-[#070A10]"
+                style={{ textDecoration: "none" }}
               >
-                <FileText className="h-4 w-4" aria-hidden="true" />
                 Resume
               </a>
-            </li>
-            <li className="px-4 pt-3">
-              <p className="truncate font-mono text-[11px] text-slate-600">
-                {profile.email} · {profile.location}
-              </p>
             </li>
           </ul>
         </div>

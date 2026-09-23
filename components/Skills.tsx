@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { skillCategories } from "@/data/skills";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
+import { TechBadge } from "@/components/ui/TechBadge";
 import { cn } from "@/lib/utils";
 
 export function Skills() {
@@ -26,9 +27,9 @@ export function Skills() {
     <section
       id="skills"
       aria-label="Technical skills"
-      className="relative scroll-mt-20 overflow-hidden"
+      className="relative scroll-mt-20 overflow-hidden bg-[#0D1420]"
     >
-      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
+      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-28">
         <div className="flex flex-wrap items-end justify-between gap-5">
           <Reveal className="min-w-0">
             <SectionHeading
@@ -41,10 +42,10 @@ export function Skills() {
           </Reveal>
         </div>
 
-        {/* Dense mono filter rail — 44px targets, no card chrome */}
+        {/* Filter pills — toggle off returns to All, 44px targets */}
         <Reveal delay={0.05}>
           <div
-            className="no-scrollbar -mx-4 mt-7 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
+            className="no-scrollbar -mx-4 mt-8 flex gap-1.5 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0"
             role="group"
             aria-label="Filter skill categories"
           >
@@ -63,46 +64,29 @@ export function Skills() {
           </div>
         </Reveal>
 
-        {/* Dense ledger: one hairline row per group — the densest section */}
-        <div className="mt-4 border-t border-white/[0.08]">
-          {visible.map((cat, i) => (
-            <Reveal key={cat.id} delay={Math.min(i, 3) * 0.04}>
-              <div className="row-hover grid gap-2 border-b border-white/[0.07] py-5 hover:bg-white/[0.015] sm:grid-cols-[260px_1fr] sm:gap-8 sm:py-6">
-                <div className="min-w-0">
-                  <p className="flex items-baseline gap-2.5">
-                    <span className="font-mono text-[11px] text-slate-600">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="truncate text-[15px] font-semibold tracking-tight text-white">
-                      {cat.label}
-                    </span>
-                  </p>
-                  <p className="mt-1 pl-8 font-mono text-[11px] text-slate-600">
-                    {cat.description} · {cat.skills.length}
-                  </p>
-                </div>
-                <ul
-                  className="flex min-w-0 flex-wrap gap-x-1 gap-y-2 pl-8 sm:pl-0"
-                  aria-label={`${cat.label} skills`}
-                >
-                  {cat.skills.map((s, si) => (
-                    <li key={s} className="flex items-center gap-1 text-[13.5px]">
-                      <span className="cursor-default rounded px-1.5 py-1 text-slate-300 transition-colors hover:bg-white/[0.06] hover:text-white">
-                        {s}
-                      </span>
-                      {si < cat.skills.length - 1 && (
-                        <span aria-hidden="true" className="text-[10px] text-slate-700">
-                          /
-                        </span>
-                      )}
+        {/* Toolkit grid — one card per group, icon markers per tool */}
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((cat) => (
+            <Reveal key={cat.id} className="min-w-0">
+              <div className="h-full rounded border border-[rgba(255,255,255,0.07)] bg-[#111927] p-5">
+                <p className="tech-label mb-4 text-[10px] uppercase text-[#FBBF24]">
+                  {cat.label}
+                </p>
+                <ul className="flex flex-wrap gap-2" aria-label={`${cat.label} skills`}>
+                  {cat.skills.map((s) => (
+                    <li key={s}>
+                      <TechBadge name={s} sans tone="surface" />
                     </li>
                   ))}
                 </ul>
+                <p className="mt-4 font-mono text-[11px] text-[#3D506A]">
+                  {cat.description} · {cat.skills.length}
+                </p>
               </div>
             </Reveal>
           ))}
         </div>
-        <p className="mt-4 font-mono text-[11px] text-slate-600">
+        <p className="mt-4 font-mono text-[11px] text-[#3D506A]">
           {visible.length} group{visible.length === 1 ? "" : "s"} ·{" "}
           {visible.reduce((n, c) => n + c.skills.length, 0)} tools shown
         </p>
@@ -126,10 +110,10 @@ function FilterPill({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "inline-flex min-h-[44px] flex-none items-center whitespace-nowrap rounded-full border px-4 py-2 font-mono text-[12px] transition",
+        "tech-label inline-flex min-h-[44px] flex-none items-center whitespace-nowrap rounded-full border px-4 py-2 text-[12px] transition",
         active
-          ? "border-white/80 bg-white font-semibold text-black"
-          : "border-white/10 bg-transparent text-slate-500 hover:border-white/25 hover:text-white"
+          ? "border-transparent bg-[#FBBF24] font-semibold text-[#070A10]"
+          : "border-[rgba(255,255,255,0.07)] bg-transparent text-[#3D506A] hover:border-[rgba(255,255,255,0.12)] hover:text-[#7A90B0]"
       )}
     >
       {children}

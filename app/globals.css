@@ -3,38 +3,32 @@
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-display: var(--font-instrument), Georgia, "Times New Roman", serif;
 
-  --color-void: #04060c;
-  --color-panel: #080d18;
-  --color-panel-2: #0b1222;
-  --color-line: rgba(148, 163, 184, 0.14);
-  --color-accent-violet: #a78bfa;
-  --color-accent-blue: #7dd3fc;
-  --color-accent-cyan: #22d3ee;
+  /* Figma visual system — deep charcoal/navy atmosphere (never pure black) */
+  --color-base: #070a10;
+  --color-surface: #0d1420;
+  --color-elevated: #111927;
+  --color-hover: #162030;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(255, 255, 255, 0.12);
+
+  --color-primary: #eef2ff;
+  --color-secondary: #7a90b0;
+  --color-muted: #3d506a;
+  --color-dim: #2a3a50;
+
+  /* Controlled multi-accent identity — tiny highlights, labels, lines */
+  --color-accent-sky: #38bdf8;
   --color-accent-emerald: #34d399;
-  --color-accent-mint: #5eead4;
+  --color-accent-violet: #a78bfa;
   --color-accent-amber: #fbbf24;
+  --color-accent-rose: #fb7185;
+  --color-accent-cyan: #22d3ee;
 
-  /* Display scale — real contrast: hero >> section >> body >> micro */
-  --text-display-hero: clamp(2.75rem, 7vw, 4.9rem);
-  --text-display-section: clamp(1.9rem, 4.2vw, 2.9rem);
-  --text-display-sub: clamp(1.35rem, 2.6vw, 1.75rem);
-
-  --animate-float-slow: float 9s ease-in-out infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
-  --animate-spin-slow: spin 24s linear infinite;
   --animate-marquee: marquee 28s linear infinite;
-  --animate-aurora: aurora 14s ease-in-out infinite alternate;
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
   @keyframes pulse-dot {
     0%,
     100% {
@@ -52,20 +46,6 @@
     }
     to {
       transform: translateX(-50%);
-    }
-  }
-  @keyframes aurora {
-    0% {
-      transform: translate3d(-6%, -2%, 0) scale(1);
-      opacity: 0.9;
-    }
-    50% {
-      transform: translate3d(5%, 4%, 0) scale(1.08);
-      opacity: 1;
-    }
-    100% {
-      transform: translate3d(-3%, 6%, 0) scale(1.04);
-      opacity: 0.95;
     }
   }
 }
@@ -89,13 +69,24 @@ html {
 }
 
 body {
-  background: #05080f;
-  color: #e2e8f0;
+  background: #070a10;
+  color: #eef2ff;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  font-feature-settings: "ss01", "cv11";
+}
+
+/* Subtle page texture — faint top light + fine noise, kept secondary */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.04) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
 /* Mobile hardening: never allow horizontal scroll from decorative layers */
@@ -118,25 +109,21 @@ svg {
   color: #ecfdf5;
 }
 
-/* Subtle scrollbar */
+/* Thin, quiet scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #04060c;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 8px;
-  border: 2px solid #04060c;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #2a3a50;
+  border-radius: 2px;
 }
 
 :focus-visible {
-  outline: 2px solid #34d399;
-  outline-offset: 3px;
+  outline: 1.5px solid #a78bfa;
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
@@ -145,15 +132,6 @@ svg {
     linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
   background-size: 44px 44px;
-}
-
-.bg-dots {
-  background-image: radial-gradient(rgba(148, 163, 184, 0.22) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
-.mask-fade-y {
-  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
 }
 
 .mask-fade-radial {
@@ -172,92 +150,18 @@ svg {
   font-variant-numeric: tabular-nums;
 }
 
-.code-glow {
-  box-shadow:
-    0 0 0 1px rgba(148, 163, 184, 0.12),
-    0 24px 60px -28px rgba(0, 0, 0, 0.9),
-    0 16px 48px -24px rgba(52, 211, 153, 0.12);
+/* Thin hairline divider between sections (Figma `.divider`) */
+.divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
 }
 
-.glass {
-  background: linear-gradient(180deg, rgba(13, 20, 36, 0.92), rgba(7, 11, 22, 0.94));
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.text-gradient-hero {
-  background: linear-gradient(92deg, #6ee7b7 0%, #7dd3fc 48%, #c4b5fd 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Kept for the single Hero identity card only — other sections use
-   hairline ledger rows (no lift) to cut transform/paint cost. */
-.card-lift {
-  transition:
-    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.3s ease,
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
-}
-.card-lift:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 20px 50px -20px rgba(0, 0, 0, 0.8),
-    0 0 0 1px rgba(255, 255, 255, 0.06);
-}
-
-/* Cheap row hover: border + background only, no transform → no layout shift. */
-.row-hover {
-  transition: border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.btn-primary-glow {
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 10px 28px -12px rgba(0, 0, 0, 0.8),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-
-.noise::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-
-/* Editorial hairline rule used by ledger sections */
-.rule-hairline {
-  border-color: rgba(148, 163, 184, 0.14);
-}
-
-/* Underline tabs (Projects filters) — no layout shift on toggle */
-.filter-tab {
-  position: relative;
-}
-.filter-tab::after {
-  content: "";
-  position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
-  bottom: 4px;
-  height: 2px;
-  border-radius: 999px;
-  background: currentColor;
-  opacity: 0;
-  transform: scaleX(0.6);
-  transition: opacity 0.2s ease, transform 0.25s ease;
-}
-.filter-tab[data-active="true"]::after {
-  opacity: 1;
-  transform: scaleX(1);
+/* Small mono technical label — section eyebrows, metadata, counts */
+.tech-label {
+  font-family: var(--font-jetbrains-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 /* ProjectVisual frame polish — shared inner highlight + vignette */
@@ -283,11 +187,20 @@ svg {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), inset 0 -32px 48px -32px rgba(0, 0, 0, 0.8);
 }
 
+/* Cheap row hover: border + background only, no transform → no layout shift. */
+.row-hover {
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
 
 /* Safe-area: footer + mobile menu never collide with home indicator */
