@@ -45,7 +45,7 @@ export function Contact() {
     <section
       id="contact"
       aria-label="Contact"
-      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
+      className="relative scroll-mt-20 overflow-hidden"
     >
       {/* Same reference container as About / Experience / Skills — left aligned throughout */}
       <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">

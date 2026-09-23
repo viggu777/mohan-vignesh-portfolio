@@ -26,7 +26,7 @@ export function Skills() {
     <section
       id="skills"
       aria-label="Technical skills"
-      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
+      className="relative scroll-mt-20 overflow-hidden"
     >
       <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-5">

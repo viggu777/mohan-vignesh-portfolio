@@ -58,7 +58,7 @@ export function About() {
         </Reveal>
 
         {/* pillars — numbered ledger rows, no cards, no icon-chips */}
-        <ol className="mt-2">
+        <ol className="mt-8 border-t border-white/[0.09]">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.06}>
               <li className="row-hover grid gap-1 border-b border-white/[0.07] py-6 sm:grid-cols-[64px_240px_1fr] sm:items-baseline sm:gap-6">

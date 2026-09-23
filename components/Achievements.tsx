@@ -14,9 +14,9 @@ export function Achievements() {
     <section
       id="achievements"
       aria-label="Achievements"
-      className="relative overflow-hidden border-t border-white/[0.06]"
+      className="relative scroll-mt-20 overflow-hidden"
     >
-      <div className="relative mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
+      <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
         <Reveal>
           <SectionHeading
             index="05"

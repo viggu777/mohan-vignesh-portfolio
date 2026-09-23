@@ -4,10 +4,10 @@ export const profile: Profile = {
   name: "Kola Mohan Vignesh Kumar",
   firstName: "Mohan Vignesh",
   monogram: "MV",
-  role: "Full Stack Developer | MERN · Next.js · React Native",
+  role: "Full Stack Developer | MERN · Next.js · AI Integration",
   headline: "Building Real-World Web & Mobile Apps with MERN & Next.js.",
   summary:
-    "CSE undergraduate building real-world web and mobile apps with MERN, Next.js, and React Native — from auth, role-based access, REST APIs and databases to payments, deployment, with practical Generative AI features.",
+    "CSE undergraduate building real-world web and mobile apps with MERN, Next.js, and React Native — from auth, role-based access, REST APIs and databases to payments, deployment, and LLM integration (RAG pipelines, semantic search).",
   location: "Visakhapatnam, India",
   education: {
     degree: "B.Tech in Computer Science and Engineering",

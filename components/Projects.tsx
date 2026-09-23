@@ -13,7 +13,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
-const filters: Array<"All" | ProjectCategory> = ["All", "Full Stack", "Mobile", "AI", "AI Integration"];
+const filters: Array<"All" | ProjectCategory> = ["All", "Full Stack", "Mobile", "AI / LLM"];
 
 const featureGlow: Record<Project["accent"], string> = {
   violet: "bg-[radial-gradient(ellipse_60%_50%_at_30%_20%,rgba(167,139,250,0.12),transparent_70%)]",
@@ -45,7 +45,7 @@ export function Projects() {
     <section
       id="projects"
       aria-label="Featured projects"
-      className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]"
+      className="relative scroll-mt-20 overflow-hidden"
     >
       <div className="relative mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
         <div className="flex flex-wrap items-end justify-between gap-5">

@@ -13,7 +13,7 @@ export const projects: Project[] = [
       "I also integrated Llama 3.1 8B Instant through the Groq API for semantic answer evaluation with partial marking and a manual-review fallback. That AI evaluation path was later removed from production due to API and deployment constraints — the rule-based grading, rankings, and percentile analytics remain live.",
     ],
     categoryLabel: "Full Stack · Proctoring · MERN",
-    categories: ["Full Stack", "AI", "AI Integration"],
+    categories: ["Full Stack", "AI / LLM"],
     tech: [
       "React",
       "Node.js",
@@ -99,8 +99,8 @@ export const projects: Project[] = [
       "Beyond Pomodoro, timetable, SGPA, and study workflows, the core AI feature is a RAG-based study assistant for PDF question answering: document ingestion, text extraction, chunking, embeddings, MongoDB Atlas Vector Search, semantic retrieval, and Hugging Face LLM generation.",
       "Retrieval is user-isolated, so each student's questions are answered only from their own documents.",
     ],
-    categoryLabel: "Mobile · Full Stack · AI Integration",
-    categories: ["Mobile", "Full Stack", "AI", "AI Integration"],
+    categoryLabel: "Mobile · RAG · Full Stack",
+    categories: ["Mobile", "Full Stack", "AI / LLM"],
     tech: [
       "React Native",
       "Expo",

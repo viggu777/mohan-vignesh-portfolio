@@ -9,7 +9,7 @@ export interface SocialLink {
   username?: string;
 }
 
-export type ProjectCategory = "AI" | "Full Stack" | "Mobile" | "AI Integration";
+export type ProjectCategory = "AI / LLM" | "Full Stack" | "Mobile";
 
 export interface ProjectFeature {
   title: string;
